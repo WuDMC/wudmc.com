@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/modules.xml
+/inspectionProfiles/profiles_settings.xml
+vcs.xml
+wudmc.ru.iml
+misc.xml
+test.py
