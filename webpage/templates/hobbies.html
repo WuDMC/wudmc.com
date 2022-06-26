@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<body style="background-color: #1a1a1a;color: rgb(247,249,250);">
+    <div class="container-fluid px-0" id="main-content">
+        <div class="row justify-content-between no-gutters">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-7 col-xl-8">
+                <div class="pic-hobbies">
+                    <blockquote class="blockquote blockquote-6">
+                        <p class="mb-0">It's never too late to&nbsp;<br><a href="/index.html">start over again</a></p>
+                        <footer class="blockquote-footer">Steppenwolf<br></footer>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="col-12 col-sm-5 col-md-5 col-lg-4 col-xl-3 align-self-center right-col">
+                <div class="text-left mx-auto" style="width: 80%;">
+                    <h1 class="hobbie_h">HOBBIES</h1>
+                    <ul class="text-left hobbie-list">
+                        <li>Travel</li>
+                        <li>Investment</li>
+                        <li>Drone pilot</li>
+                        <li>Photography</li>
+                        <li>Film-making</li>
+                        <li>Blogging</li>
+                        <li>Motobike</li>
+                        <li>Snowboard</li>
+                        <li>Soccer</li>
+                        <li>Chess</li>
+                        <li>Beer</li>
+                    </ul>
+                </div>
+         	<div class="mx-auto" style="width: 80%;">   
+                {% include "sign.html"%}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+{% endblock %}

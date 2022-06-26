@@ -1,0 +1,23 @@
+[0;1;32m●[0m gunicorn.service - gunicorn daemon
+     Loaded: loaded (/etc/systemd/system/gunicorn.service; disabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Wed 2022-03-30 19:17:10 MSK; 2 months 21 days ago
+TriggeredBy: [0;1;32m●[0m gunicorn.socket
+   Main PID: 13432 (gunicorn)
+      Tasks: 4 (limit: 1153)
+     Memory: 112.5M
+     CGroup: /system.slice/gunicorn.service
+             ├─13432 /home/wudmc/wudmc.ru/wudmcvenv/bin/python /home/wudmc/wudmc.ru/wudmcvenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock wudmc_site.wsgi:application
+             ├─13444 /home/wudmc/wudmc.ru/wudmcvenv/bin/python /home/wudmc/wudmc.ru/wudmcvenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock wudmc_site.wsgi:application
+             ├─13445 /home/wudmc/wudmc.ru/wudmcvenv/bin/python /home/wudmc/wudmc.ru/wudmcvenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock wudmc_site.wsgi:application
+             └─13446 /home/wudmc/wudmc.ru/wudmcvenv/bin/python /home/wudmc/wudmc.ru/wudmcvenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock wudmc_site.wsgi:application
+
+Jun 21 10:16:30 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]:     connection = Database.connect(**conn_params)
+Jun 21 10:16:30 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]:   File "/home/wudmc/wudmc.ru/wudmcvenv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+Jun 21 10:16:30 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]:     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+Jun 21 10:16:30 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]: django.db.utils.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+Jun 21 10:16:30 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]:         Is the server running on that host and accepting TCP/IP connections?
+Jun 21 10:16:30 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]: connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+Jun 21 10:16:30 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]:         Is the server running on that host and accepting TCP/IP connections?
+Jun 21 10:16:30 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]:  - - [21/Jun/2022:07:16:30 +0000] "POST /admin/login/?next=/admin/ HTTP/1.0" 500 257170 "https://wudmc.ru/admin/login/?next=/admin/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
+Jun 21 10:16:54 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13445]:  - - [21/Jun/2022:07:16:54 +0000] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 2215 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
+Jun 21 10:30:19 194-58-121-173.cloudvps.regruhosting.ru gunicorn[13446]:  - - [21/Jun/2022:07:30:19 +0000] "GET / HTTP/1.1" 200 10697 "-" "curl/7.68.0"

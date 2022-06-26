@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html style="background-color: #1a1a1a;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CALLTOUCH TEST PAGE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
+    <link rel="stylesheet" href="/assets/css/styles.min.css">
+    <!-- calltouch -->
+    <script type="text/javascript">
+        (function(w,d,n,c){w.CalltouchDataObject=n;w[n]=function(){w[n]["callbacks"].push(arguments)};if(!w[n]["callbacks"]){w[n]["callbacks"]=[]}w[n]["loaded"]=false;if(typeof c!=="object"){c=[c]}w[n]["counters"]=c;for(var i=0;i<c.length;i+=1){p(c[i])}function p(cId){var a=d.getElementsByTagName("script")[0],s=d.createElement("script"),i=function(){a.parentNode.insertBefore(s,a)};s.type="text/javascript";s.async=true;s.src="https://mod.calltouch.ru/init.js?id="+cId;if(w.opera=="[object Opera]"){d.addEventListener("DOMContentLoaded",i,false)}else{i()}}})(window,document,"ct","7mvmnami");
+    </script>
+    <!-- calltouch -->
+</head>
+<body style="background-color: #1a1a1a;color: rgb(247,249,250);">
+   <div class="container-fluid px-0" id="main-content">
+    <div class="row no-gutters">
+        <div class="col-12 col-sm-6 offset-sm-0">
+            <div class="pic" style="background-image: url(&quot;/assets/img/rcallt3.png&quot;);background-color: rgba(122,111,252,0.22);"></div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 align-self-center right-col" style="height: 100vh;justify-content: center;">
+            <div class="text-left mx-auto" style="width: 80%;">
+                <h1>CT TEST-PAGE</h1>
+                <p><a href="http://volvo-service.4px.tech/">volvo ref</a></p>
+                <p class="text-left main-text" style="font-family: 'Roboto Mono', monospace;"><br>This page created for testing calltouch. Replace number +7 930 003 00 00 without adding class or id to this block.</p>
+                <p class="text-left main-text" style="font-family: 'Roboto Mono', monospace;"><br>In this block number +7 930 003 00 00 dont need to replace.</p>
+            </div>
+            <div class="mx-auto" style="width: 80%;">
+                <p style="font-family: 'Roboto Mono', monospace;opacity: 0.50;padding-top: 3%;font-size: 12px;"><br>+7 930 003 00 01 for test withot class or ID<br></p>
+                <p id="cl_test_id" style="font-family: 'Roboto Mono', monospace;opacity: 0.50;padding-top: 3%;font-size: 12px;">+7 930 003 00 02&nbsp;for test ID<br></p>
+                <p class="cl_test_class_1" style="font-family: 'Roboto Mono', monospace;opacity: 0.50;padding-top: 3%;font-size: 12px;"><br>+7 930 003 00 03&nbsp;for test class1<br></p>
+                <p class="cl_test_class_2" style="font-family: 'Roboto Mono', monospace;opacity: 0.50;padding-top: 3%;font-size: 12px;"><br>+7 930 003 00 04&nbsp;for&nbsp;test class2<br></p>
+                <h2>APIv1</h2>
+                <div class="form-group">
+                    <form action="order.php" method="post" class="ct_form">
+                        <p>Form working with APIv1 (php+curl)&nbsp;</p>
+                        <input class="form-control my-3" name="form-phone" placeholder="Phone" id="form-phone">
+                        <input class="form-control my-3" name="form-email" placeholder="E-mail" id="form-email">
+                        <input class="form-control my-3" name="form-name" placeholder="Name" id="form-name">
+                        <input class="btn btn-primary" type="submit" value="SEND IT">
+                    </form>
+                </div>
+                <div class="form-group" id="form-js">
+                    <form action="sendit.html" class="ct_form">
+                        <p>Form working with APIv1 (JS)&nbsp;</p>
+                        <input class="form-control my-3" name="form-phone2" placeholder="Phone" id="form-phone2">
+                        <input class="form-control my-3" name="form-email2" placeholder="E-mail" id="form-email2">
+                        <input class="form-control my-3" name="form-name2" placeholder="Name" id="form-name2">
+                        <input class="btn btn-primary" id="form#myform2" type="submit" value="SEND IT">
+                    </form>
+                </div>
+<h2>APIv2</h2>
+                <button class="btn btn-primary" onclick="sendRQ()">Отправить заявку-рыбу по APIv2</button>
+                <p style="padding-bottom: 50px; font-family: 'Roboto Mono', monospace;opacity: 0.50;padding-top: 3%;font-size: 12px;"><br>Для проверки отправки заявки по этой кнопке измени RequestNumber и RequestDate в скрипте<br></p>
+<h2>MAP</h2>
+<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A47c400b696826188dc57c425bb9d154c17b92dc8a8a87efa5957feb514a83c9d&amp;width=100%&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).on('submit', '#form-js', function() { 
+        var form = jQuery(this);
+        var phone = form.find('input[name="form-phone2"]').val();
+        var fio = form.find('input[name="form-name2"]').val();
+        var mail = form.find('input[name="form-email2"]').val(); 
+        var sub = 'Отслеживаемая форма JS APIv1';
+        var ct_site_id = '42118'; /* ID сайта внутри Calltouch */
+        var ct_data = { 
+            fio: fio,
+            phoneNumber: phone,
+            email: mail,
+            subject: sub,
+            requestUrl: location.href,
+            sessionId: window.ct('calltracking_params','7mvmnami').sessionId /* Чтобы определить источник заявки, передаем ID сессии Calltouch sessionId. Вместо wgblo7m9 нужно передавать mod_id скрипта Calltouch. */
+        };
+        /* При необходимости делаем проверку на корректность собранных с формы данных */
+        /* Например, обязательным для заполнения на форме является поле с телефоном, проверяем его наличие и не пустое ли оно */
+        if (typeof(phone)!='undefined' && phone!=''){
+            /* Выполняем AJAX-запрос */
+            jQuery.ajax({ 
+               url: 'https://api.calltouch.ru/calls-service/RestAPI/requests/'+ct_site_id+'/register/', 
+               dataType: 'json', 
+               type: 'POST', 
+               data: ct_data,
+               async: false /* Предположим, после отправки формы на сайте настроен редирект на другую страницу, поэтому используем параметр async: false для синхронной отправки запроса */
+           }); 
+        }
+    });
+</script>
+<!-- Скрипт Calltouch для отслеживания заявок с форм -->
+<script type="text/javascript">
+    jQuery(document).on('submit', '#form-js-2', function() { 
+        var form = jQuery(this);
+        var phone = form.find('input[name="form-phone2"]').val();
+        var fio = form.find('input[name="form-name2"]').val();
+        var mail = form.find('input[name="form-email2"]').val(); 
+        var sub = 'Отслеживаемая форма JS APIv1';
+        var ct_site_id = '42118'; /* ID сайта внутри Calltouch */
+        var ct_data = { 
+            fio: fio,
+            phoneNumber: phone,
+            email: mail,
+            subject: sub,
+            requestUrl: location.href,
+            sessionId: window.ct('calltracking_params','7mvmnami').sessionId /* Чтобы определить источник заявки, передаем ID сессии Calltouch sessionId. Вместо wgblo7m9 нужно передавать mod_id скрипта Calltouch. */
+        };
+        /* При необходимости делаем проверку на корректность собранных с формы данных */
+        /* Например, обязательным для заполнения на форме является поле с телефоном, проверяем его наличие и не пустое ли оно */
+        if (typeof(phone)!='undefined' && phone!=''){
+            /* Выполняем AJAX-запрос */
+            jQuery.ajax({ 
+               url: 'https://api.calltouch.ru/lead-service/v1/api/request/create', 
+               dataType: 'json', 
+               type: 'POST', 
+               data: ct_data,
+               async: false /* Предположим, после отправки формы на сайте настроен редирект на другую страницу, поэтому используем параметр async: false для синхронной отправки запроса */
+           }); 
+        }
+    });
+</script>
+<script>
+function sendRQ() {
+    var request = new XMLHttpRequest();
+    request.open('POST','https://api.calltouch.ru/lead-service/v1/api/request/create',true);
+    request.setRequestHeader('Access-Token', 'xReHXcRDHFxQJ2zvJZUUy_y_SbUvsjUw-tf90stc7zLlA');
+    request.setRequestHeader('SiteId', '42118');
+    request.send('{ "requests": [ {"requestNumber":"1234", "requestDate":"19-01-2021 17:04:00", "subject":"форма JS APIv2", "phoneNumber":"+79209111222", "email":"wudmc@wudmc.js", "fio":"Иванов Иван"} ] }');
+    if (request.status != 200) {
+        // обработать ошибку
+        alert('Проверь консоль -> Network -> all -> create.xhr -> Preview & Response');
+      } else {
+        // вывести результат
+        alert(request.responseText);
+      }
+  }
+</script>
+<!--  Пример костыля чтобы не потерять
+');
+var ct_c=function(c){try{var t;return 0<(t="object"==typeof c?c:document.querySelectorAll(c)).length?[].slice.call(t):[]}catch(c){console.log(c)}},ct_contains=function(c,n){try{var e=[];return ct_c(c)&&[].forEach.call(ct_c(c),function(c){var t=c.firstChild;if(t)for(;3===t.nodeType&&-1!=t.nodeValue.indexOf(n)&&e.push(c),t=t.nextSibling;);}),0<e.length?e:[]}catch(c){console.log(c)}},ct_not=function(c,t){try{var n=[];return 0==ct_c(t)?ct_c(c):(ct_c(c)&&ct_c(t)&&[].forEach.call(ct_c(c),function(c){-1==Array.from(ct_c(t)).indexOf(c)&&n.push(c)}),0<n.length?n:[])}catch(c){console.log(c)}},ct_html=function(c,t){try{ct_c(c)&&[].forEach.call(ct_c(c),function(c){c&&(c.innerHTML=t)})}catch(c){console.log(c)}},ct_repl=function(c,o,l){try{ct_c(c)&&[].forEach.call(ct_c(c),function(c){var t,n,e=c.firstChild;if(e)for(;3===e.nodeType&&(n=(t=e.nodeValue).replace(o,l))!==t&&(e.nodeValue=n),e=e.nextSibling;);})}catch(c){console.log(c)}},ct_repl_a=function(c,t,n){try{ct_c(c)&&[].forEach.call(ct_c(c),function(c){c&&c.setAttribute(t,n)})}catch(c){console.log(c)}},ct_event_listen=function(c,t,n){try{"string"==typeof c&&(c=[c]),[].forEach.call(c,function(c){document.addEventListener(c,{handleEvent:function(c){ct_c(t)&&-1!=[].slice.call(ct_c(t)).indexOf(c.target)&&n()}})})}catch(c){console.log(c)}},ct_remove=function(c){try{ct_c(c)&&[].forEach.call(ct_c(c),function(c){c&&c.parentNode.removeChild(c)})}catch(c){console.log(c)}},ct_ready=function(c){try{c(),"loading"===document.readyState&&document.addEventListener("DOMContentLoaded",c),"complete"!==document.readyState&&window.addEventListener("load",c)}catch(c){console.log(c)}};
+  
+function ct_replace(){
+ct_html('#main-content > div > div.col-12.col-sm-6.col-md-6.align-self-center.right-col > div.text-left.mx-auto > p:nth-child(2)','</br>This page created for testing calltouch. Replace number +7 (${pn[1]}${pn[2]}${pn[3]}) ${pn[4]}${pn[5]}${pn[6]}-${pn[7]}${pn[8]}-${pn[9]}${pn[10]} without adding class or id to this block. </br> <span style="color:#00ff3a">Этот блок был заменен с помощью  Костыля на JS</span>');
+}
+
+ct_ready(ct_replace);
+void(' -->
+</body>
+
+</html>

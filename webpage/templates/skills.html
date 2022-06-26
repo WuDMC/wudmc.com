@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<body style="background-color: #1a1a1a;color: rgb(247,249,250);">
+    <div class="container-fluid px-0" id="main-content">
+        <div class="row justify-content-between no-gutters">
+            <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                <div class="pic-skills">
+                    <blockquote class="blockquote blockquote-1">
+                        <p class="mb-0">Plz feel free to text me via TG or FB any time.<br></p>
+                        <footer class="blockquote-footer">Denis</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7 align-self-center right-col" style="justify-content: center;">
+                <div class="row no-gutters">
+                    <div class="col-12 col-md-4 col-lg-4 col-xl-4 text-left" style="padding-right: 24px;padding-left: 0;">
+                        <div class="text-left mx-auto">
+                            <h1 class="skill_h">MARKETING</h1>
+                            <ul class="main-text-skills" style="font-family: 'Roboto Mono', monospace;padding-left: 0;">
+                                <li>Customer value optimization<br></li>
+                                <li>A/B testing<br></li>
+                                <li>Google ADS/Analitics<br></li>
+                                <li>Yandex Direct/Metrika<br></li>
+                                <li>SEO<br></li>
+                                <li>E-mail marketing<br></li>
+                                <li>SMM/SMT<br></li>
+                                <li>HTML/CSS/Vanilla JS<br></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="padding-right: 24px;padding-left: 0;">
+                        <div class="text-left mx-auto">
+                            <h1 class="skill_h">DATA ANALYSIS</h1>
+                            <ul class="main-text-skills">
+                                <li>Statictics/Math<br></li>
+                                <li>Python<br></li>
+                                <li>SQL<br></li>
+				<li>Tableau*<br></li>
+                                <li>ML*<br></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4 col-xl-4" style="padding-right: 24px;padding-left: 0;">
+                        <div class="text-left mx-auto">
+                            <h1 class="skill_h">SOFT SKILLS</h1>
+                            <ul class="main-text-skills">
+				<li>Version control: GIT<br></li>
+                                <li>Agile/SCRUM methodology<br></li>
+                                <li>GTD methodology<br></li>
+                                <li>Team-leading (up to 5)<br></li>
+                                <li>Tax accounting<br></li>
+                                <li>Business meeting<br></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-skills">
+                    <p class="line-1 anim-typewriter fl-yellow" style="font-family: 'Roboto Mono', monospace;padding-top: 0;margin-top: 30px;margin-left: 0;">What about my&nbsp;<a href="/hobbies.html">hobbies?</a> <br></p>
+                    <p style="font-family: 'Roboto Mono', monospace;padding-top: 0;margin-top: 30px;margin-left: 0;color: grey;opacity: 0.5">*Still learning<br></p>
+                    
+                </div>
+         	<div class="mx-auto" style="width: 100%;">   
+                {% include "sign.html"%}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+[0;1;32m●[0m gunicorn.service - gunicorn daemon
+     Loaded: loaded (/etc/systemd/system/gunicorn.service; disabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Tue 2022-06-21 10:43:51 MSK; 10s ago
+TriggeredBy: [0;1;32m●[0m gunicorn.socket
+   Main PID: 947913 (gunicorn)
+      Tasks: 4 (limit: 1153)
+     Memory: 93.9M
+     CGroup: /system.slice/gunicorn.service
+             ├─947913 /home/wudmc/wudmc.ru/wudmcvenv/bin/python /home/wudmc/wudmc.ru/wudmcvenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock wudmc_site.wsgi:application
+             ├─947924 /home/wudmc/wudmc.ru/wudmcvenv/bin/python /home/wudmc/wudmc.ru/wudmcvenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock wudmc_site.wsgi:application
+             ├─947925 /home/wudmc/wudmc.ru/wudmcvenv/bin/python /home/wudmc/wudmc.ru/wudmcvenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock wudmc_site.wsgi:application
+             └─947926 /home/wudmc/wudmc.ru/wudmcvenv/bin/python /home/wudmc/wudmc.ru/wudmcvenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock wudmc_site.wsgi:application
+
+Jun 21 10:43:51 194-58-121-173.cloudvps.regruhosting.ru systemd[1]: Started gunicorn daemon.
+Jun 21 10:43:51 194-58-121-173.cloudvps.regruhosting.ru gunicorn[947913]: [2022-06-21 10:43:51 +0300] [947913] [INFO] Starting gunicorn 20.1.0
+Jun 21 10:43:51 194-58-121-173.cloudvps.regruhosting.ru gunicorn[947913]: [2022-06-21 10:43:51 +0300] [947913] [INFO] Listening at: unix:/run/gunicorn.sock (947913)
+Jun 21 10:43:51 194-58-121-173.cloudvps.regruhosting.ru gunicorn[947913]: [2022-06-21 10:43:51 +0300] [947913] [INFO] Using worker: sync
+Jun 21 10:43:51 194-58-121-173.cloudvps.regruhosting.ru gunicorn[947924]: [2022-06-21 10:43:51 +0300] [947924] [INFO] Booting worker with pid: 947924
+Jun 21 10:43:51 194-58-121-173.cloudvps.regruhosting.ru gunicorn[947925]: [2022-06-21 10:43:51 +0300] [947925] [INFO] Booting worker with pid: 947925
+Jun 21 10:43:51 194-58-121-173.cloudvps.regruhosting.ru gunicorn[947926]: [2022-06-21 10:43:51 +0300] [947926] [INFO] Booting worker with pid: 947926
