@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% load my_custom %}
+
+{% block page_content %}
+<body style="background-color: #1a1a1a;color: rgb(247,249,250);">
+    <div class="container-fluid px-0" id="main-content">
+        <div class="row no-gutters">
+            <div class="col-12 col-sm-6 offset-sm-0">
+            <div class="pic" id="map">
+
+            </div>
+            <!--                <div class="pic" id="map"></div>-->
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 align-self-center right-col" style="justify-content: center;">
+                <div class="text-left mx-auto" style="width: 80%;">
+                    <h1 class="fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 25px; font-size: 26px;">Hey, lets TRIP!</h1>
+                    <h2>test AUTOCOMPLETE form</h2>
+                    <div>
+                        <form method="POST" action='roulette_result.html' id="post-form2">
+
+                        {% csrf_token %}
+                        {% for field in roulette_form.hidden_fields %}
+                            {{ field }}
+                        {% endfor %}
+
+                        {% for field in roulette_form.visible_fields %}
+                             {% if field|is_checkbox %}
+                                <div class="form-group form-check">
+                                    {{ field }}
+                                    <label>{{ field.label }}</label>
+                                    <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
+                                </div>
+                            {% else %}
+                                <div class="form-group">
+                                    <label class="form-check-label">{{ field.label }}</label>
+                                    {{ field }}
+                                    <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <p class="text-left main-text fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 15px;">Press the button — <span style="display: inline-block; border: 1px solid white; display: inline-block;border: 1px solid white;padding: 0 6px 0 6px;border-radius: 0.25rem"> bellow</span><br><br></p>
+                            <button class="btn btn-primary" type="sumbit">Generate TRIP</button>
+                            <div id="result" ><p><br><br></p>{{ result|safe }}</div>
+                            <div id="right-panel" style=" background-color: #92a8d1">
+                                <p>Total Distance: <span id="total"></span></p>
+                                <p><a id="mapLink" href="#" title="Open in Google Maps" target="_blank">Open in Google Maps</a></p>
+                            </div>
+                        </div>
+                    </form>
+
+                    </div>
+
+
+                </div>
+            </div>
+         	<div class="mx-auto" style="width: 80%;">
+                {% include "sign.html"%}
+            </div>
+
+        </div>
+    </div>
+</body>
+<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&types=regions&language=en&key=AIzaSyC1bv4VSX5EqyfQ5j4GM5Cpwi4wh2pjKwQ"></script>
+<script src="{% static '/assets/js/geo.js' %}"></script>
+
+{% endblock %}
