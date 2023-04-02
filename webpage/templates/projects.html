@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<body style="background-color: #1a1a1a;color: rgb(247,249,250);">
+    <div class="container-fluid px-0" id="main-content">
+        <div class="row no-gutters">
+            <div class="col-12 col-sm-6 offset-sm-0">
+                <div class="pic-projects"></div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 align-self-center right-col" style="justify-content: center;">
+                <div class="text-left mx-auto" style="width: 80%;">
+                    <h1 >MY PROJECTS</h1>
+                    <ul class="project-list">
+                        <li>WuDMC website<br>
+                            Status: Active<br>
+                            Stack:<br>
+                            <ul class="stack">
+                                <li> - Python 3.8</li>
+                                <li> - Django 4</li>
+                                <li> - PostgreSQL 12</li>
+                            </ul>
+                        </li>
+                        <li>Rents.contact - Telegram bot for room/villas<br>
+                            Status: Archived<br>
+                            Stack:<br>
+                            <ul class="stack">
+                                <li> - Python 3.8</li>
+                                <li> - Flask</li>
+                                <li> - SQLlite</li>
+                            </ul>
+                        </li>
+                        <li>Telegram bot Random Coffe Batumi<br>
+                        </li>
+                        <li>Trip roulette<br>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="mx-auto" style="width: 80%;">
+                    {% include "sign.html"%}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

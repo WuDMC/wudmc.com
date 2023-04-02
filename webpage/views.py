@@ -21,6 +21,9 @@ def skills(request):
 def hobbies(request):
     return render(request, 'hobbies.html', {})
 
+def projects(request):
+    return render(request, 'projects.html', {})
+
 
 def nearests(lat, lng, size=2, radius=300, local=True):
     username = 'wudmc'
