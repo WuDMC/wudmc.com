@@ -78,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.django.',
         'NAME': 'WUDMC',
 	'USER': 'WUDMC',
-	'PASSWORD': '***REMOVED***',
+	'PASSWORD': 'Bebrip_33',
 	'HOST': 'localhost',
 	'PORT': '',
 
