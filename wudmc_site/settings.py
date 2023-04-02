@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import configparser
 from pathlib import Path
 
+config = configparser.ConfigParser()
+config.read('config.txt')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +27,15 @@ SECRET_KEY = 'django-insecure-q0sazqa+5rr#vx7a=0-bb13p*eh63_p=-f-6&+0zb7y08h_5f=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '194.58.121.173', '185.46.10.57', '127.0.0.1', 'wudmc.ru', 'wudmc.com']
+allowed_hosts = ['wudmc.com']  # Изначальный список хостов, который содержит только wudmc.com
+hosts_from_config = config['HOSTS']  # Получаем список хостов из секции [HOSTS] конфигурационного файла
+
+for host in hosts_from_config:
+    if hosts_from_config[host] == '1':
+        allowed_hosts.append(host)
+
+# Теперь список ALLOWED_HOSTS содержит все хосты из конфига, а также wudmc.com
+ALLOWED_HOSTS = allowed_hosts
 
 
 # Application definition
@@ -81,12 +91,11 @@ WSGI_APPLICATION = 'wudmc_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wudmc',
-	'USER': 'wudmc',
-	'PASSWORD': '***REMOVED***',
-	'HOST': 'localhost',
-	'PORT': '',
-
+        'NAME': config['DATABASE']['NAME'],
+        'USER': config['DATABASE']['USER'],
+        'PASSWORD': config['DATABASE']['PASSWORD'],
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 

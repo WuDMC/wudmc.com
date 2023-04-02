@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /.idea/wudmc.com.iml
+/wudmc_site/passwords.txt
+/config.txt
