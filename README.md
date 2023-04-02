@@ -10,7 +10,7 @@ my personal site on django
 # sudo apt -y install postgresql-12 postgresql-client-12
 # sudo -u postgres psql
 # CREATE DATABASE wudmc;
-# CREATE USER wudmc WITH PASSWORD '***REMOVED***';
+# CREATE USER wudmc WITH PASSWORD '******';
 # ALTER ROLE wudmc SET client_encoding TO 'utf8';
 # ALTER ROLE wudmc SET default_transaction_isolation TO 'read committed';
 # ALTER ROLE wudmc SET timezone TO 'UTC';
