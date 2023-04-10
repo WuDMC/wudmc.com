@@ -135,11 +135,11 @@ server {
 }
 ```
 ### step 4 - restart services
-
+```
 sudo systemctl daemon-reload
 sudo systemctl restart gunicorn
 sudo systemctl restart nginx
-
+```
 
 ### SSL
 > возможно acme больше не нужен и достоаточно только certbot
