@@ -15,11 +15,13 @@ $(document).ready(
     });
   })
 );
+//document.addEventListener('DOMContentLoaded', function() {
+//    initialize();
+//});
 
-
-$( document ).ready(function() {
-    google.maps.event.addDomListener(window, 'load', initialize);
-});
+//$( document ).ready(function() {
+//    google.maps.event.addDomListener(window, 'load', initialize);
+//});
 var origin = 'trip start';
 var destin = 'trip finish';
 var route;
