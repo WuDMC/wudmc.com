@@ -1,12 +1,23 @@
 $(document).ready(
   $('#post-form2').submit(function(e){
     e.preventDefault();
-    var serializedData = $(this).serialize();
-    console.log(serializedData);
+    var formData = {
+                    lat: parseFloat($('#id_cityLat').val()),
+                    lng: parseFloat($('#id_cityLng').val()),
+                    opts: {
+                        size: parseInt($('#id_citySize').val()),
+                        local: $('#id_local').is(':checked'),
+                        radius: parseInt($('#id_radius').val()),
+                        type: $('#id_type').val(),
+                        rounds: parseInt($('#id_rounds').val())
+                    }
+                };
+    var jsonData = JSON.stringify(formData);
+    console.log(jsonData);
     $.ajax({
       type:"POST",
-      url: "/roulette_result.html",
-      data:  serializedData,
+      url: "https://wudmc.com:4567/route",
+      data:  jsonData,
       success: function(data){
         $("#result").text(data["result"]);
         route = data["result"];
@@ -15,13 +26,7 @@ $(document).ready(
     });
   })
 );
-//document.addEventListener('DOMContentLoaded', function() {
-//    initialize();
-//});
 
-//$( document ).ready(function() {
-//    google.maps.event.addDomListener(window, 'load', initialize);
-//});
 var origin = 'trip start';
 var destin = 'trip finish';
 var route;

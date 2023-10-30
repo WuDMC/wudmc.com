@@ -17,7 +17,7 @@
                     <h1 class="fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 25px; font-size: 26px;">Hey, lets TRIP!</h1>
                     <h2>test AUTOCOMPLETE form</h2>
                     <div>
-                        <form method="POST" action='roulette_result.html' id="post-form2">
+                        <form method="POST" id="post-form2">
 
                         {% csrf_token %}
                         {% for field in roulette_form.hidden_fields %}
