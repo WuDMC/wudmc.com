@@ -16,7 +16,7 @@ $(document).ready(
     console.log(jsonData);
     $.ajax({
       type:"POST",
-      url: "https://wudmc.com:4567/route",
+      url: "http://localhost:4567/route",
       data:  jsonData,
       success: function(data){
         $("#result").text(data["result"]);

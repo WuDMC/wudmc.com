@@ -1,0 +1,3 @@
+[submodule "geonames"]
+	path = geonames
+	url = https://github.com/WuDMC/geonames
