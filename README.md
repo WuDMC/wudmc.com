@@ -19,6 +19,7 @@ sudo -H pip3 install --upgrade pip
 sudo -H pip3 install virtualenv
 git clone git@github.com:WuDMC/wudmc.com.git
 cd wudmc.com
+git submodule update --init --recursive
 virtualenv venv
 
 ```

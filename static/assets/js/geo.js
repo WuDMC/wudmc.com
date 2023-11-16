@@ -13,10 +13,16 @@ $(document).ready(
                     }
                 };
     var jsonData = JSON.stringify(formData);
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    $.ajaxSetup({
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
+        });
     console.log(jsonData);
     $.ajax({
       type:"POST",
-      url: "http://localhost:4567/route",
+      url: "/roulette_result",
       data:  jsonData,
       success: function(data){
         $("#result").text(data["result"]);
