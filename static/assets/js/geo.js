@@ -9,7 +9,8 @@ $(document).ready(
                         local: $('#id_local').is(':checked'),
                         radius: parseInt($('#id_radius').val()),
                         type: $('#id_type').val(),
-                        rounds: parseInt($('#id_rounds').val())
+                        rounds: parseInt($('#id_rounds').val()),
+                        random: $('#id_random').val() === 'True'
                     }
                 };
     var jsonData = JSON.stringify(formData);
