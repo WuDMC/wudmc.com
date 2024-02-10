@@ -1,7 +1,7 @@
 import json
 import requests
 from django.shortcuts import render
-from .forms import RouletteForm, CityForm
+from .forms import RouletteForm
 from django.http import JsonResponse
 
 
@@ -22,8 +22,8 @@ def roulette(request):
     roulette_form = RouletteForm()
 
     # cityform = CityForm()
-
-    return render(request, 'roulette.html', {'roulette_form': roulette_form })
+    trigger_fields = ['id_rounds', 'id_citySize', 'id_radius', 'id_type', 'id_local']
+    return render(request, 'roulette.html', {'roulette_form': roulette_form, 'trigger_fields':  trigger_fields })
 
 def roulette_result(request):
     if request.method == 'POST':

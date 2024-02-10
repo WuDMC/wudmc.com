@@ -23,7 +23,19 @@
                             {{ field }}
                         {% endfor %}
                         {% for field in roulette_form.visible_fields %}
-                             {% if field|is_checkbox %}
+                             {% if field.auto_id in trigger_fields and field|is_checkbox %}
+                                  <div class="form-group form-check" style="display:none" id="{{ field.auto_id }}_trigger_div">
+                                    {{ field }}
+                                    <label>{{ field.label }}</label>
+                                    <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
+                                </div>
+                             {% elif field.auto_id in trigger_fields %}
+                                <div class="form-group" style="display:none" id="{{ field.auto_id }}_trigger_div">
+                                    <label class="form-check-label">{{ field.label }}</label>
+                                    {{ field }}
+                                    <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
+                                </div>
+                            {% elif  field|is_checkbox %}
                                 <div class="form-group form-check">
                                     {{ field }}
                                     <label>{{ field.label }}</label>
@@ -39,6 +51,8 @@
                         {% endfor %}
 
                         <div class="form-group">
+                            <button class="btn btn-secondary" type="button" id="customize-button">CUSTOMIZE TRIP</button>
+
                             <p class="text-left main-text fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 15px;">Press the button — <span style="display: inline-block; border: 1px solid white; display: inline-block;border: 1px solid white;padding: 0 6px 0 6px;border-radius: 0.25rem"> bellow</span><br><br></p>
                             <button class="btn btn-primary" type="sumbit">Generate TRIP</button>
                             <div id="result" ><p><br><br></p>{{ result|safe }}</div>
@@ -63,5 +77,38 @@
 </body>
 <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&types=regions&language=en&key=AIzaSyC1bv4VSX5EqyfQ5j4GM5Cpwi4wh2pjKwQ&callback=initialize"></script>
 <script src="{% static '/assets/js/geo.js' %}"></script>
+                    <script>
+                    // Получаем ссылку на кнопку по ее id
+var customizeButton = document.getElementById('customize-button');
 
+// Получаем ссылку на форму по ее id
+var postForm = document.getElementById('post-form2');
+
+// Получаем ссылки на все элементы внутри формы с их id
+var idRandomElement = postForm.querySelector('#id_random');
+var idRoundsElement = postForm.querySelector('#id_rounds_trigger_div');
+var idCitySizeElement = postForm.querySelector('#id_citySize_trigger_div');
+var idRadiusElement = postForm.querySelector('#id_radius_trigger_div');
+var idTypeElement = postForm.querySelector('#id_type_trigger_div');
+var idLocalElement = postForm.querySelector('#id_local_trigger_div');
+
+// Назначаем обработчик события click на кнопку
+customizeButton.addEventListener('click', function() {
+    // Получаем текущее значение атрибута "value" для каждого элемента
+    var currentValueRandom = idRandomElement.value;
+    var currentValueRounds = idRoundsElement.style.display;
+    var currentValueCitySize = idCitySizeElement.style.display;
+    var currentValueRadius = idRadiusElement.style.display;
+    var currentValueType = idTypeElement.style.display;
+    var currentValueLocal = idLocalElement.style.display;
+
+    // Меняем значения атрибутов "value" на противоположные
+    idRandomElement.value = (currentValueRandom === 'True') ? 'false' : 'True';
+    idRoundsElement.style.display = (currentValueRounds === 'none') ? 'block' : 'none';
+    idCitySizeElement.style.display = (currentValueCitySize === 'none') ? 'block' : 'none';
+    idRadiusElement.style.display = (currentValueRadius === 'none') ? 'block' : 'none';
+    idTypeElement.style.display = (currentValueType === 'none') ? 'block' : 'none';
+    idLocalElement.style.display = (currentValueLocal === 'none') ? 'block' : 'none';
+});
+</script>
 {% endblock %}
