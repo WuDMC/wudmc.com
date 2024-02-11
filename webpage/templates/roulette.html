@@ -15,7 +15,7 @@
             <div class="col-12 col-sm-6 col-md-6 align-self-center right-col" style="justify-content: center;">
                 <div class="text-left mx-auto" style="width: 80%;">
                     <h1 class="fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 25px; font-size: 26px;">Hey, lets TRIP!</h1>
-                    <h2>test AUTOCOMPLETE form</h2>
+                    <h2>It is a trip randomizer!</h2>
                     <div>
                     <form method="POST" id="post-form2">
                         {% csrf_token %}
@@ -23,20 +23,22 @@
                             {{ field }}
                         {% endfor %}
                         {% for field in roulette_form.visible_fields %}
+                        <!-- Default checked -->
                              {% if field.auto_id in trigger_fields and field|is_checkbox %}
-                                  <div class="form-group form-check" style="display:none" id="{{ field.auto_id }}_trigger_div">
+                                  <div class="form-group form-check custom-control custom-switch" style="display:none" id="{{ field.auto_id }}_trigger_div">
                                     {{ field }}
-                                    <label>{{ field.label }}</label>
+                                    <label class="custom-control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
                                     <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
                                 </div>
                              {% elif field.auto_id in trigger_fields %}
                                 <div class="form-group" style="display:none" id="{{ field.auto_id }}_trigger_div">
-                                    <label class="form-check-label">{{ field.label }}</label>
+                                    <label class="form-check-label">{{ field.label }} <span class="trip-value">{{ field.value }}</span>
+                                    </label>
                                     {{ field }}
                                     <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
                                 </div>
                             {% elif  field|is_checkbox %}
-                                <div class="form-group form-check">
+                                <div class="form-group form-check custom-control custom-switch">
                                     {{ field }}
                                     <label>{{ field.label }}</label>
                                     <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
@@ -99,7 +101,7 @@ customizeButton.addEventListener('click', function() {
     var currentValueRounds = idRoundsElement.style.display;
     var currentValueCitySize = idCitySizeElement.style.display;
     var currentValueRadius = idRadiusElement.style.display;
-    var currentValueType = idTypeElement.style.display;
+<!--    var currentValueType = idTypeElement.style.display;-->
     var currentValueLocal = idLocalElement.style.display;
 
     // Меняем значения атрибутов "value" на противоположные
@@ -107,8 +109,40 @@ customizeButton.addEventListener('click', function() {
     idRoundsElement.style.display = (currentValueRounds === 'none') ? 'block' : 'none';
     idCitySizeElement.style.display = (currentValueCitySize === 'none') ? 'block' : 'none';
     idRadiusElement.style.display = (currentValueRadius === 'none') ? 'block' : 'none';
-    idTypeElement.style.display = (currentValueType === 'none') ? 'block' : 'none';
+<!--    idTypeElement.style.display = (currentValueType === 'none') ? 'block' : 'none';-->
     idLocalElement.style.display = (currentValueLocal === 'none') ? 'block' : 'none';
 });
+
+<!--    function updateValue(inputElement) {-->
+<!--        var smallElement = inputElement.nextElementSibling;-->
+<!--        if (smallElement && smallElement.tagName.toLowerCase() === 'small') {-->
+<!--            smallElement.innerHTML = inputElement.value;-->
+<!--        }-->
+<!--    }-->
+<!--function updateValue(inputElement) {-->
+<!--    var labelElement = inputElement.parentElement; // Находим родительский элемент-->
+<!--    var smallElement = labelElement.querySelector('span'); // Находим первый элемент <small> внутри родительского элемента-->
+<!--    if (smallElement) {-->
+<!--        smallElement.innerHTML = inputElement.value;-->
+<!--    }-->
+<!--}-->
+
+function updateValue(inputElement) {
+    var labelElement = inputElement.parentElement; // Находим родительский элемент
+    var smallElement = labelElement.querySelector('span'); // Находим первый элемент <small> внутри родительского элемента
+    if (smallElement && inputElement.getAttribute('name') === 'citySize') {
+        var value = parseInt(inputElement.value);
+        var sizeLabels = ['XS', 'S', 'M', 'L'];
+        smallElement.textContent = sizeLabels[value];
+    } else {
+        // В случае других ползунков, просто отображаем числовое значение
+        if (smallElement) {
+            smallElement.textContent = inputElement.value;
+        }
+    }
+}
+
+
 </script>
+
 {% endblock %}

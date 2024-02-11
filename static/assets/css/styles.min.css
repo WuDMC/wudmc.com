@@ -331,3 +331,15 @@ a:hover {
         padding: 10px 19px;
     }
 }
+input[type='range'] {
+  accent-color: #fcfc6f;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    border-color: #fcfc6f;
+    background-color: #fcfc6f;
+}
+
+.custom-switch .custom-control-input:checked~.custom-control-label::after {
+    background-color: #1a1a1a;
+}
