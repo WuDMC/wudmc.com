@@ -71,10 +71,9 @@
                             </div>
                                                             <p>Total Distance: <span id="total"></span></p>
                                                             <p><a id="mapLink" href="#" title="Open in Google Maps" target="_blank">Open in Google Maps</a></p>
-<button id='answer-example-share-button'>Share!</button>
-
                         </div>
                     </form>
+<button id='answer-example-share-button'>Share!</button>
 
                     </div>
 
@@ -167,6 +166,21 @@ function updateValue(inputElement) {
             smallElement.innerHTML = "Now allow the search outside the country of startpoint";
         }
     }
+
+    const shareButton = document.getElementById("answer-example-share-button");
+shareButton.addEventListener("click", (e) => {
+  if (navigator.share) {
+    navigator.share({
+        title: 'Web Share API Draft',
+        text: 'Take a look at this spec!',
+        url: 'https://wicg.github.io/web-share/#share-method',
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+  } else {
+    console.log('Share not supported on this browser, do it the old way.');
+  }
+});
 </script>
 
 {% endblock %}
