@@ -28,20 +28,20 @@
                                   <div class="form-group form-check custom-control custom-switch" style="display:none" id="{{ field.auto_id }}_trigger_div">
                                     {{ field }}
                                     <label class="custom-control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
-                                    <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
+                                    <small id="{{ field.auto_id }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
                                 </div>
                              {% elif field.auto_id in trigger_fields %}
                                 <div class="form-group" style="display:none" id="{{ field.auto_id }}_trigger_div">
                                     <label class="form-check-label">{{ field.label }} <span class="trip-value">{{ field.value }}</span>
                                     </label>
                                     {{ field }}
-                                    <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
                                 </div>
                             {% elif  field|is_checkbox %}
                                 <div class="form-group form-check custom-control custom-switch">
                                     {{ field }}
                                     <label>{{ field.label }}</label>
-                                    <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
+                                    <small class="form-text text-muted">{{ field.help_text }}</small>
                                 </div>
                             {% else %}
                                 <div class="form-group">
@@ -142,7 +142,18 @@ function updateValue(inputElement) {
     }
 }
 
-
+    function toggleParameterText(inputElement) {
+    var parent = inputElement.parentElement; // Находим родительский элемент
+    var smallElement = parent.querySelector('small'); // Находим первый элемент <small> внутри родительского элемента
+    var labelElement = parent.querySelector('label');
+        if (inputElement.checked) {
+            labelElement.innerHTML = 'Only country of startpoint'
+            smallElement.innerHTML = "Now restrict the search to the country of startpoint";
+        } else {
+            labelElement.innerHTML = 'Any country'
+            smallElement.innerHTML = "Now allow the search outside the country of startpoint";
+        }
+    }
 </script>
 
 {% endblock %}

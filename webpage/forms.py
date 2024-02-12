@@ -9,7 +9,7 @@ class RouletteForm(forms.Form):
     rounds = forms.DecimalField(help_text='How many stops will be in your trip', label='Stops:', widget=forms.NumberInput(attrs={'class': 'form-control form-range' , 'type':'range', 'min': '1', 'max': '15', 'step': '1', 'oninput':"updateValue(this);"}), required=False, initial=3)
     citySize = forms.ChoiceField(help_text='Choose the size of places to stop', label='Max city size:',widget=forms.NumberInput(attrs={ 'class': 'form-control form-range', 'type':'range', 'min': '0', 'max': '3', 'step': '1', 'oninput':"updateValue(this);"}), required=False, initial='M')
     radius = forms.DecimalField(help_text='How many km between each stop', label='Max distance between stops:', widget=forms.NumberInput(attrs={'class': 'form-control form-range', 'type':'range', 'min': '5', 'max': '300', 'step': '5', 'oninput':"updateValue(this);"}), required=False, initial=75)
-    local = forms.BooleanField(help_text='this parameter will restrict the search on the country of startpoint,', label='Only  country of startpoint', widget=forms.CheckboxInput(attrs={'class': 'form-check-input custom-control-input'}), required=False)
+    local = forms.BooleanField(help_text='this parameter will restrict the search on the country of startpoint,', label='Only country of startpoint', widget=forms.CheckboxInput(attrs={'class': 'form-check-input custom-control-input', 'onchange':'toggleParameterText(this);'}), required=False)
     random = forms.BooleanField(widget=HiddenInput(), initial=True)
 
     city = forms.CharField(widget=HiddenInput(), max_length=100)
