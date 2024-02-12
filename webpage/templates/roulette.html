@@ -14,8 +14,8 @@
             </div>
             <div class="col-12 col-sm-6 col-md-6 align-self-center right-col" style="justify-content: center;">
                 <div class="text-left mx-auto" style="width: 80%;">
-                    <h1 class="fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 25px; font-size: 26px;">Hey, lets TRIP!</h1>
-                    <h2>It is a trip randomizer!</h2>
+                    <h1 class="fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 25px; font-size: 26px;">Hey, just enter your</h1>
+                    <h2>STARTPOINT</h2>
                     <div>
                     <form method="POST" id="post-form2">
                         {% csrf_token %}
@@ -43,6 +43,15 @@
                                     <label>{{ field.label }}</label>
                                     <small class="form-text text-muted">{{ field.help_text }}</small>
                                 </div>
+                            {% elif field.label == 'Begin here' %}
+                                <div class="form-group">
+                                    <label class="form-check-label">{{ field.label }}</label>
+                                    {{ field }}
+                                    <small id="{{ field.label }}_sm" class="form-text text-muted">{{ field.help_text }}</small>
+                                    <br>
+                                    <button class="btn btn-secondary" type="button" id="customize-button">CUSTOMIZE TRIP</button>
+
+                                </div>
                             {% else %}
                                 <div class="form-group">
                                     <label class="form-check-label">{{ field.label }}</label>
@@ -53,15 +62,17 @@
                         {% endfor %}
 
                         <div class="form-group">
-                            <button class="btn btn-secondary" type="button" id="customize-button">CUSTOMIZE TRIP</button>
+<!--                            <button class="btn btn-secondary" type="button" id="customize-button">CUSTOMIZE TRIP</button>-->
 
                             <p class="text-left main-text fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 15px;">Press the button — <span style="display: inline-block; border: 1px solid white; display: inline-block;border: 1px solid white;padding: 0 6px 0 6px;border-radius: 0.25rem"> bellow</span><br><br></p>
                             <button class="btn btn-primary" type="sumbit">Generate TRIP</button>
                             <div id="result" ><p><br><br></p>{{ result|safe }}</div>
-                            <div id="right-panel" style=" background-color: #92a8d1">
-                                <p>Total Distance: <span id="total"></span></p>
-                                <p><a id="mapLink" href="#" title="Open in Google Maps" target="_blank">Open in Google Maps</a></p>
+                            <div id="right-panel" style="display:none; background-color: #92a8d1">
                             </div>
+                                                            <p>Total Distance: <span id="total"></span></p>
+                                                            <p><a id="mapLink" href="#" title="Open in Google Maps" target="_blank">Open in Google Maps</a></p>
+<button id='answer-example-share-button'>Share!</button>
+
                         </div>
                     </form>
 
@@ -105,6 +116,8 @@ customizeButton.addEventListener('click', function() {
     var currentValueLocal = idLocalElement.style.display;
 
     // Меняем значения атрибутов "value" на противоположные
+    customizeButton.innerHTML = (customizeButton.innerHTML === 'CUSTOMIZE TRIP') ? 'RANDOM TRIP' : 'CUSTOMIZE TRIP';
+
     idRandomElement.value = (currentValueRandom === 'True') ? 'false' : 'True';
     idRoundsElement.style.display = (currentValueRounds === 'none') ? 'block' : 'none';
     idCitySizeElement.style.display = (currentValueCitySize === 'none') ? 'block' : 'none';

@@ -26,7 +26,7 @@ $(document).ready(
       url: "/roulette_result",
       data:  jsonData,
       success: function(data){
-        $("#result").text(data["result"]);
+//        $("#result").text(data["result"]);
         route = data["result"];
         initMap();
       }
@@ -92,7 +92,7 @@ function calcRoute() {
         destination: end,
         waypoints: waypts,
         optimizeWaypoints: true,
-        travelMode: google.maps.DirectionsTravelMode.WALKING
+        travelMode: google.maps.DirectionsTravelMode.DRIVING
     };
     directionsService.route(request, function(response, status) {
         if (status == google.maps.DirectionsStatus.OK) {
