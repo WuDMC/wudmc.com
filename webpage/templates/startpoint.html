@@ -7,7 +7,7 @@
     <div class="container-fluid px-0" id="main-content">
         <div class="row no-gutters">
             <div class="col-12 col-sm-6 offset-sm-0 p-relative">
-            <div class="pic" id="map">
+            <div class="maps" id="map">
 
             </div>
             <button class="btn btn-light p-absolute" style="display:none" type="button" id="google_button">Open in Google Maps
@@ -15,7 +15,7 @@
             </button>
             <div id="geo_results" class="p-absolute" style="display:none">
                 <div id="geo_details">
-                    <p class="text-left main-text fl-yellow">During thid journey you will cover <span id="total"></span> and make <span id="result" >{{ result|safe }} </span> stops at:</p>
+                    <p class="text-left main-text fl-yellow">During this journey you will cover <span id="total"></span> and make <span id="result" >{{ result|safe }} </span> stops at:</p>
                     <div id="stoplist" >{{ result|safe }}</div>
                     <div id="right-panel" style="display:none; background-color: #92a8d1"></div>
                 </div>
@@ -73,36 +73,21 @@
                             <button class="btn btn-lg btn-primary" type="sumbit">Generate route</button>
                         </div>
 
-                    </form>
-                    <button class="btn btn-light" style="display:none" type="button" id='journey-share-button'>
-                        Share
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                          <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
-                        </svg>
-                    </button>
-<!--                    <div id="geo_results2" style="display:none">-->
-<!--                        <div>-->
-<!--                            <p class="text-left main-text fl-yellow">During thid journey you will cover <span id="total"></span> and make <span id="result" >{{ result|safe }} </span> stops at:</p>-->
-<!--                            <div id="stoplist" >{{ result|safe }}</div>-->
-<!--                            <div id="right-panel" style="display:none; background-color: #92a8d1"></div>-->
-<!--                        </div>-->
-<!--                        <button class="btn btn-light" type="button">Open in Google Maps-->
-<!--                            <a id="mapLink" href="#" title="Open in Google Maps" target="_blank"></a>-->
-<!--                        </button>-->
-<!--                        <button class="btn btn-light" type="button" id='answer-example-share-button'>-->
-<!--                            Share-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">-->
-<!--                              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>-->
-<!--                            </svg>-->
-<!--                        </button>-->
-<!--                    </div>-->
-                </div>
+                        </form>
+                        <button class="btn btn-light" style="display:none" type="button" id='journey-share-button'>
+                            Share
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+                            </svg>
+                        </button>
+
+                    </div>
 
 
                 </div>
-            </div>
-         	<div class="mx-auto" style="width: 80%;">
-                {% include "sign.html"%}
+<!--                                    <div class="mx-auto" style="width: 80%;">-->
+<!--                                        {% include "sign.html"%}-->
+<!--                                    </div>-->
             </div>
 
         </div>

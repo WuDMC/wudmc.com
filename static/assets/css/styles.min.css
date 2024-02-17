@@ -38,6 +38,11 @@ ul {
     height: 50vh;
     background-size: cover;
 }
+.maps {
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+}
 .pic,
 .pic-hobbies,
 .pic-skills,
@@ -210,6 +215,12 @@ a:hover {
         background-image: url(/static/assets/img/portfolie.jpg);
         background-size: cover;
     }
+    .maps {
+        height: 50vh;
+        background-image: url(/static/assets/img/maps.gif);
+        background-size: cover;
+        background-position: center;
+    }
     .pic-projects {
         height: 50vh;
         background-image: url(/static/assets/img/projects.jpg);
@@ -228,6 +239,12 @@ a:hover {
         height: 100vh;
         background-position: top right;
         background-image: url(/static/assets/img/portfolie.jpg);
+        background-size: cover;
+    }
+    .maps {
+        height: 100vh;
+        background-position: top right;
+        background-image: url(/static/assets/img/maps.gif);
         background-size: cover;
     }
     .pic-projects {
