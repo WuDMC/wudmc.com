@@ -128,10 +128,16 @@ a:hover {
     font-size: 14px;
     width: 70%;
 }
+.secondary-text {
+    font-size: 10px;
+}
 @media (min-width: 576px) {
     .main-text {
         font-size: 14px;
         width: 70%;
+    }
+    .secondary-text {
+    font-size: 12px;
     }
 }
 @media (min-width: 768px) {
@@ -139,10 +145,16 @@ a:hover {
         font-size: 16px;
         width: 70%;
     }
+    .secondary-text {
+    font-size: 14px;
+    }
 }
 @media (min-width: 992px) {
     .main-text {
         font-size: 18px;
+    }
+    .secondary-text {
+    font-size: 14px;
     }
 }
 .pic {
@@ -342,4 +354,50 @@ input[type='range'] {
 
 .custom-switch .custom-control-input:checked~.custom-control-label::after {
     background-color: #1a1a1a;
+}
+
+#stoplist li {
+    font-size: 12px; /* Размер шрифта */
+}
+
+@media (min-width: 576px) {
+    #stoplist li {
+        font-size: 12px; /* Размер шрифта */
+    }
+}
+
+@media (min-width: 768px) {
+    #stoplist li {
+        font-size: 14px; /* Размер шрифта */
+    }
+}
+
+@media (min-width: 992px) {
+    #stoplist li {
+        font-size: 16px; /* Размер шрифта */
+    }
+}
+
+@media (min-width: 1200px) {
+    #stoplist li {
+        font-size: 16px; /* Размер шрифта */
+    }
+}
+
+#geo_results {
+    transform: translate(5%, -105%);
+    width: 40%;
+}
+
+#google_button {
+    position: absolute;
+    top: 7px;
+    left: 185px;
+    border-radius: 0;
+}
+
+#geo_results #geo_details {
+    background: black;
+    padding: 10px;
+    opacity: 0.75;
 }

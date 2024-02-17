@@ -23,7 +23,7 @@ def roulette(request):
 
     # cityform = CityForm()
     trigger_fields = ['id_rounds', 'id_citySize', 'id_radius', 'id_type', 'id_local']
-    return render(request, 'roulette.html', {'roulette_form': roulette_form, 'trigger_fields':  trigger_fields })
+    return render(request, 'startpoint.html', {'roulette_form': roulette_form, 'trigger_fields':  trigger_fields })
 
 def roulette_result(request):
     if request.method == 'POST':

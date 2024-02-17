@@ -26,8 +26,20 @@ $(document).ready(
       url: "/roulette_result",
       data:  jsonData,
       success: function(data){
-//        $("#result").text(data["result"]);
+        $("#result").text(data["result"].length);
+        console.log(data);
         route = data["result"];
+        var namesString = "";
+        route.forEach(function(result) {
+          namesString += "<li>" + result.name + "</li>";
+        });
+
+        // Устанавливаем текст элемента #stoplist
+        $("#stoplist").html("<ul>" + namesString + "</ul>");
+        $("#geo_results").removeAttr("style");
+        $("#journey-share-button").removeAttr("style");
+        $("#google_button").removeAttr("style");
+
         initMap();
       }
     });

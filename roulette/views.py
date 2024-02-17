@@ -93,4 +93,4 @@
 #     fig
 #
 # def roulette(request):
-#     return render(request, roulette.html, {})
+#     return render(request, startpoint.html, {})
