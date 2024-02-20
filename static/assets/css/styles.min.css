@@ -243,7 +243,7 @@ a:hover {
     }
     .maps {
         height: 100vh;
-        background-position: top right;
+        background-position: center;
         background-image: url(/static/assets/img/maps.gif);
         background-size: cover;
     }
