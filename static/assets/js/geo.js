@@ -47,6 +47,14 @@ $(document).ready(function() {
                     $("#geo_results").removeAttr("style");
                     $("#journey-share-button").removeAttr("style");
                     $("#mapLink").removeAttr("style");
+                    // Получаем позицию элемента с id="map"
+                    var mapElement = document.getElementById("map");
+                    var elementPosition = mapElement.getBoundingClientRect().top;
+                    window.scrollTo({
+                        top: elementPosition,
+                        behavior: 'smooth'
+                    });
+
                 } catch (error) {
                     console.log("An error occurred during success handling: " + error);
                 document.getElementById("preloader").style.display = 'none';

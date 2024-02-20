@@ -453,7 +453,6 @@ input[type='range'] {
 
 body {
   background: black;
-  overflow: hidden;
 }
 
 .lds-spinner {
