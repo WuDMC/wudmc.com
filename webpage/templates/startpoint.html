@@ -13,10 +13,15 @@
             <button class="btn btn-light p-absolute" style="display:none" type="button" id="google_button">Open in Google Maps
                 <a id="mapLink" href="#" title="Open in Google Maps" target="_blank"></a>
             </button>
-            <div id="geo_results" class="p-absolute" style="display:none">
+            <div id="geo_results" class="p-absolute p-relative" style="display:none">
                 <div id="geo_details">
                     <p class="text-left main-text fl-yellow">During this journey you will cover <span id="total"></span> and make <span id="result" >{{ result|safe }} </span> stops at:</p>
-                    <div id="stoplist" >{{ result|safe }}</div>
+                    <div id="stoplist">{{ result|safe }}</div>
+                        <button class="btn btn-light btn-share" style="display:none" type="button" id='journey-share-button'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+                              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+                            </svg>
+                        </button>
                     <div id="right-panel" style="display:none; background-color: #92a8d1"></div>
                 </div>
             </div>
@@ -74,13 +79,6 @@
                         </div>
 
                         </form>
-                        <button class="btn btn-light" style="display:none" type="button" id='journey-share-button'>
-                            Share
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
-                            </svg>
-                        </button>
-
                     </div>
 
 

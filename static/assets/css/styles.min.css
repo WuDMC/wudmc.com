@@ -418,3 +418,11 @@ input[type='range'] {
     padding: 10px;
     opacity: 0.75;
 }
+
+#journey-share-button {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    border-radius: 0;
+    width: 44px;
+}
