@@ -1,50 +1,133 @@
-$(document).ready(
-  $('#post-form2').submit(function(e){
-    e.preventDefault();
-    var formData = {
-                    lat: parseFloat($('#id_cityLat').val()),
-                    lng: parseFloat($('#id_cityLng').val()),
-                    opts: {
-                        size: parseInt($('#id_citySize').val()),
-                        local: $('#id_local').is(':checked'),
-                        radius: parseInt($('#id_radius').val()),
-                        type: $('#id_type').val(),
-                        rounds: parseInt($('#id_rounds').val()),
-                        random: $('#id_random').val() === 'True'
-                    }
-                };
-    var jsonData = JSON.stringify(formData);
-    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-    $.ajaxSetup({
+$(document).ready(function() {
+    $('#post-form2').submit(function(e) {
+        e.preventDefault();
+        document.getElementById("map").style.backgroundImage = 'none';
+        document.getElementById("map").innerHTML = '';
+        document.getElementById("preloader").style.display = '';
+        document.getElementById("geo_results").style.display = 'none';
+        document.getElementById("journey-share-button").style.display = 'none';
+        document.getElementById("mapLink").style.display = 'none';
+        document.getElementById("error").style.display = 'none';
+
+        var formData = {
+            lat: parseFloat($('#id_cityLat').val()),
+            lng: parseFloat($('#id_cityLng').val()),
+            opts: {
+                size: parseInt($('#id_citySize').val()),
+                local: $('#id_local').is(':checked'),
+                radius: parseInt($('#id_radius').val()),
+                type: $('#id_type').val(),
+                rounds: parseInt($('#id_rounds').val()),
+                random: $('#id_random').val() === 'True'
+            }
+        };
+        var jsonData = JSON.stringify(formData);
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        $.ajaxSetup({
             headers: {
-                'X-CSRFToken': csrftoken
+                'X-CSRFToken': csrfToken
             }
         });
-    console.log(jsonData);
-    $.ajax({
-      type:"POST",
-      url: "/roulette_result",
-      data:  jsonData,
-      success: function(data){
-        $("#result").text(data["result"].length);
-        console.log(data);
-        route = data["result"];
-        var namesString = "";
-        route.forEach(function(result) {
-          namesString += "<li>" + result.name + "</li>";
+        console.log(jsonData);
+        $.ajax({
+            type: "POST",
+            url: "/roulette_result",
+            data: jsonData,
+            success: function(data) {
+                try {
+                    $("#result").text(data["result"].length);
+                    console.log(data);
+                    route = data["result"];
+                    var namesString = "";
+                    route.forEach(function(result) {
+                        namesString += "<li>" + result.name + "</li>";
+                    });
+                    initMap();
+                    $("#stoplist").html("<ul>" + namesString + "</ul>");
+                    $("#geo_results").removeAttr("style");
+                    $("#journey-share-button").removeAttr("style");
+                    $("#mapLink").removeAttr("style");
+                } catch (error) {
+                    console.log("An error occurred during success handling: " + error);
+                document.getElementById("preloader").style.display = 'none';
+                document.getElementById("error").style.display = '';
+                document.getElementById("error-text").innerHTML = "Try again with another parameters. An error occurred while processing the request: " + error;                }
+            },
+            error: function(xhr, status, error) {
+                console.log("An error occurred while processing the request: " + error);
+                document.getElementById("preloader").style.display = 'none';
+                document.getElementById("error").style.display = '';
+                document.getElementById("error-text").innerHTML = "Try again with another parameters. An error occurred while processing the request: " + error;
+            }
         });
-
-        // Устанавливаем текст элемента #stoplist
-        $("#stoplist").html("<ul>" + namesString + "</ul>");
-        $("#geo_results").removeAttr("style");
-        $("#journey-share-button").removeAttr("style");
-        $("#google_button").removeAttr("style");
-
-        initMap();
-      }
     });
-  })
-);
+});
+
+
+//$(document).ready(
+//  $('#post-form2').submit(function(e){
+//    e.preventDefault();
+//    console.log('button_press')
+//    document.getElementById("map").style.backgroundImage = 'none';
+//    document.getElementById("map").innerHTML = '';
+//    document.getElementById("preloader").style.display = '';
+//    document.getElementById("geo_results").style.display = 'none';
+//    document.getElementById("journey-share-button").style.display = 'none';
+//    document.getElementById("mapLink").style.display = 'none';
+//    document.getElementById("error").style.display = 'none';
+//
+//    var formData = {
+//                    lat: parseFloat($('#id_cityLat').val()),
+//                    lng: parseFloat($('#id_cityLng').val()),
+//                    opts: {
+//                        size: parseInt($('#id_citySize').val()),
+//                        local: $('#id_local').is(':checked'),
+//                        radius: parseInt($('#id_radius').val()),
+//                        type: $('#id_type').val(),
+//                        rounds: parseInt($('#id_rounds').val()),
+//                        random: $('#id_random').val() === 'True'
+//                    }
+//                };
+//    var jsonData = JSON.stringify(formData);
+//    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+//    $.ajaxSetup({
+//            headers: {
+//                'X-CSRFToken': csrftoken
+//            }
+//        });
+//    console.log(jsonData);
+//    $.ajax({
+//      type:"POST",
+//      url: "/roulette_result",
+//      data:  jsonData,
+//      success: function(data){
+//        $("#result").text(data["result"].length);
+//        console.log(data);
+//        route = data["result"];
+//        var namesString = "";
+//        route.forEach(function(result) {
+//          namesString += "<li>" + result.name + "</li>";
+//        });
+//
+//
+//        initMap();
+//        // Устанавливаем текст элемента #stoplist
+//        $("#stoplist").html("<ul>" + namesString + "</ul>");
+//        $("#geo_results").removeAttr("style");
+//        $("#journey-share-button").removeAttr("style");
+//        $("#mapLink").removeAttr("style");
+//      },
+//        error: function (xhr, status, error) {
+//            console.log("An error occurred while processing the request: " + error);
+//            document.getElementById("preloader").style.display = 'none';
+//            document.getElementById("error").style.display = '';
+//            document.getElementById("error-text").innerHTML = "Try again with another parameters. An error occurred while processing the request: " + error;
+//
+//            // Добавьте сюда код, который вы хотите выполнить при ошибке
+//        }
+//    });
+//  })
+//);
 
 var origin = 'trip start';
 var destin = 'trip finish';
@@ -82,11 +165,13 @@ function initMap() {
   });
   directionsDisplay.setMap(map);
   calcRoute()
+  document.getElementById("preloader").style.display = 'none';
+
 
 }
 
 function calcRoute() {
-    console.log('startcalc');
+//    console.log('startcalc');
     var waypts = [];
     for (  stop of route.slice(0,-1) ) {
          point = new google.maps.LatLng( parseFloat(stop['lat']), parseFloat(stop['lng']))
@@ -124,9 +209,9 @@ function initialize() {
     document.getElementById('id_cityLat').value = place.geometry.location.lat();
     document.getElementById('id_cityLng').value = place.geometry.location.lng();
     country_code = getCountryCode(place);
-    console.log(country_code);
+//    console.log(country_code);
     test = place;
-    console.log(place);
+//    console.log(place);
 });
 }
 
@@ -134,8 +219,8 @@ function getCountryCode(place) {
     var code;
     var adr = place.address_components;
     for (var i = 1; i < adr.length + 1; i++) {
-          console.log(adr.length);
-          console.log(i);
+//          console.log(adr.length);
+//          console.log(i);
           code = adr[adr.length - i].short_name
           if (/[A-Z]/.test(code)) {
             break;
@@ -212,7 +297,7 @@ function prepareMapLink(result) {
           });
           constructMapsUrl(oplaceId, dplaceId, arrWp);
       }).catch(reason => {
-          console.log(reason)
+//          console.log(reason)
       });
   } else {
       constructMapsUrl(oplaceId, dplaceId, arrWp);
@@ -238,3 +323,118 @@ function constructMapsUrl(originId, destinationId, waypoints) {
     var aElem = document.getElementById("mapLink");
     aElem.setAttribute("href", res);
 }
+
+// Получаем ссылку на кнопку по ее id
+var customizeButton = document.getElementById('customize-button');
+var randomButton = document.getElementById('random-button');
+var spanJourneyType = document.getElementById('span_journey_type');
+
+// Получаем ссылку на форму по ее id
+var postForm = document.getElementById('post-form2');
+
+// Получаем ссылки на все элементы внутри формы с их id
+var idRandomElement = postForm.querySelector('#id_random');
+var idRoundsElement = postForm.querySelector('#id_rounds_trigger_div');
+var idCitySizeElement = postForm.querySelector('#id_citySize_trigger_div');
+var idRadiusElement = postForm.querySelector('#id_radius_trigger_div');
+var idTypeElement = postForm.querySelector('#id_type_trigger_div');
+var idLocalElement = postForm.querySelector('#id_local_trigger_div');
+
+// Назначаем обработчик события click на кнопку
+randomButton.addEventListener('click', function() {
+    // Получаем текущее значение атрибута "value" для каждого элемента
+    var currentValueRandom = idRandomElement.value;
+    var currentValueRounds = idRoundsElement.style.display;
+    var currentValueCitySize = idCitySizeElement.style.display;
+    var currentValueRadius = idRadiusElement.style.display;
+    var currentValueLocal = idLocalElement.style.display;
+
+    randomButton.classList.add('active');
+    spanJourneyType.innerHTML = 'random'
+    customizeButton.classList.remove('active');
+    idRandomElement.value = 'true'
+    idRoundsElement.style.display = 'none';
+    idCitySizeElement.style.display = 'none';
+    idRadiusElement.style.display = 'none';
+    idLocalElement.style.display = 'none';
+});
+
+customizeButton.addEventListener('click', function() {
+    // Получаем текущее значение атрибута "value" для каждого элемента
+    var currentValueRandom = idRandomElement.value;
+    var currentValueRounds = idRoundsElement.style.display;
+    var currentValueCitySize = idCitySizeElement.style.display;
+    var currentValueRadius = idRadiusElement.style.display;
+    var currentValueLocal = idLocalElement.style.display;
+
+    spanJourneyType.innerHTML = 'customized'
+    customizeButton.classList.add('active');
+    randomButton.classList.remove('active');
+    idRandomElement.value = 'false';
+    idRoundsElement.style.display = 'block';
+    idCitySizeElement.style.display = 'block';
+    idRadiusElement.style.display = 'block';
+    idLocalElement.style.display = 'block';
+});
+
+
+
+function custom_toggle() {
+//    console.log('togle');
+}
+
+
+function updateValue(inputElement) {
+    var labelElement = inputElement.parentElement; // Находим родительский элемент
+    var smallElement = labelElement.querySelector('span'); // Находим первый элемент <small> внутри родительского элемента
+    if (smallElement && inputElement.getAttribute('name') === 'citySize') {
+        var value = parseInt(inputElement.value);
+        var sizeLabels = ['XS', 'S', 'M', 'L'];
+        smallElement.textContent = sizeLabels[value];
+    } else {
+        // В случае других ползунков, просто отображаем числовое значение
+        if (smallElement) {
+            smallElement.textContent = inputElement.value;
+        }
+    }
+}
+
+function toggleParameterText(inputElement) {
+    var parent = inputElement.parentElement; // Находим родительский элемент
+    var smallElement = parent.querySelector('small'); // Находим первый элемент <small> внутри родительского элемента
+    var labelElement = parent.querySelector('label');
+        if (inputElement.checked) {
+            labelElement.innerHTML = 'Only country of startpoint'
+            smallElement.innerHTML = "Now restrict the search to the country of startpoint";
+        } else {
+            labelElement.innerHTML = 'Any country'
+            smallElement.innerHTML = "Now allow the search outside the country of startpoint";
+        }
+    }
+
+const shareButton = document.getElementById("journey-share-button");
+shareButton.addEventListener("click", (e) => {
+  if (navigator.share) {
+    navigator.share({
+        title: 'Share your journey',
+        text: 'Hey, check this out',
+        url: document.getElementById('mapLink').href,
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+  } else {
+    // Копирование URL в буфер обмена
+    const urlToCopy = document.getElementById('mapLink').href;
+    navigator.clipboard.writeText(urlToCopy)
+      .then(() => {
+        console.log('URL скопирован в буфер обмена: ', urlToCopy);
+        // Уведомление о копировании URL
+        alert('URL скопирован в буфер обмена: ' + urlToCopy);
+      })
+      .catch((error) => {
+        console.error('Ошибка копирования в буфер обмена: ', error);
+        // Уведомление об ошибке копирования
+        alert('Ошибка копирования в буфер обмена.');
+      });
+  }
+});
