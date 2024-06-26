@@ -40,6 +40,9 @@
                     <h1 class="fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 25px; font-size: 24px;">Hey, just enter your</h1>
                     <h2>STARTPOINT</h2>
                     <div>
+                                           <p class="text-left secondary-text fl-yellow" style="font-family: 'Roboto Mono', monospace;width: 90%;padding-top: 15px;opacity: 0.5;">Powered by Ruby, Geonames API & Google Geocoding, STARTPOINT dynamically generates unique travel routes for adventurous explorers like me.
+                        <br>
+                    </p>
                     <form method="POST" id="post-form2">
                         {% csrf_token %}
                         {% for field in roulette_form.hidden_fields %}
