@@ -10,6 +10,9 @@ def index(request):
     
 def skills(request):
     return render(request, 'skills.html', {})
+
+def visionz(request):
+    return render(request, 'visionz.html', {})
     
 def hobbies(request):
     return render(request, 'hobbies.html', {})

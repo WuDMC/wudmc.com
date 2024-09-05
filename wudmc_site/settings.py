@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-q0sazqa+5rr#vx7a=0-bb13p*eh63_p=-f-6&+0zb7y08h_5f=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-allowed_hosts = ['wudmc.com']  # Изначальный список хостов, который содержит только wudmc.com
+allowed_hosts = ['wudmc.com', '0.0.0.0']  # Изначальный список хостов, который содержит только wudmc.com
 hosts_from_config = config['HOSTS']  # Получаем список хостов из секции [HOSTS] конфигурационного файла
 
 for host in hosts_from_config:
