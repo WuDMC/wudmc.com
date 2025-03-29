@@ -1,0 +1,24 @@
+name: update website
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Connect to VM and deploy
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.GCP_HOST }}
+        username: ${{ secrets.GCP_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /home/wudmc
+          git pull origin master
+          sudo systemctl daemon-reload
+          sudo systemctl restart gunicorn
+          sudo systemctl restart nginx
