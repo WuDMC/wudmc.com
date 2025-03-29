@@ -17,8 +17,13 @@ sudo apt update
 sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
 sudo -H pip3 install --upgrade pip
 sudo -H pip3 install virtualenv
-git clone git@github.com:WuDMC/wudmc.com.git
+cd /home
+mkdir wudmc.com
 cd wudmc.com
+git init
+git remote add origin git@github.com:WuDMC/wudmc.com.git
+git fetch
+git checkout -t origin/master
 git submodule update --init --recursive
 virtualenv venv
 
