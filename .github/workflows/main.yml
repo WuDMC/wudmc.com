@@ -17,7 +17,7 @@ jobs:
         username: ${{ secrets.GCP_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /home/wudmc
+          cd /home/wudmc.com
           git pull origin master
           sudo systemctl daemon-reload
           sudo systemctl restart gunicorn
