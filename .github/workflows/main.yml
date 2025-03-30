@@ -17,8 +17,19 @@ jobs:
         username: ${{ secrets.GCP_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /home/wudmc.com
-          git pull origin master
+          echo "📥 Pulling latest changes..."
+          PULL_RESULT=$(bash -c "cd /home/wudmc.com && git pull origin master" 2>&1)
+        
+          echo "$PULL_RESULT"
+        
+          if echo "$PULL_RESULT" | grep -qE "Already up to date.|Fast-forward"; then
+            echo "✅ Git pull successful."
+          else
+            echo "❌ Git pull failed."
+            exit 1
+          fi
+        
+          echo "🔄 Restarting services..."
           sudo systemctl daemon-reload
           sudo systemctl restart gunicorn
           sudo systemctl restart nginx
