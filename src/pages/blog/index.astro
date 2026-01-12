@@ -1,0 +1,138 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+export const prerender = true;
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Layout
+	title="Blog - Denis Mironov"
+	description="Articles about data engineering, cloud platforms, and analytics."
+>
+	<!-- Hero -->
+	<section class="hero-section">
+		<div class="container-custom">
+			<h1 class="page-title">Blog</h1>
+			<p class="page-subtitle">Thoughts on data engineering, cloud platforms, and analytics</p>
+		</div>
+	</section>
+
+	<!-- Posts -->
+	<section class="posts-section section">
+		<div class="container-custom">
+			<div class="posts-list">
+				{posts.map((post) => (
+					<a href={`/blog/${post.id}/`} class="post-card">
+						<div class="post-meta">
+							<FormattedDate date={post.data.pubDate} />
+						</div>
+						<h2 class="post-title">{post.data.title}</h2>
+						{post.data.description && (
+							<p class="post-description">{post.data.description}</p>
+						)}
+						<span class="read-more">Read article →</span>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.hero-section {
+		padding: 8rem 0 4rem;
+		border-bottom: 1px solid var(--border-gray);
+	}
+
+	.page-title {
+		font-size: clamp(3rem, 8vw, 5rem);
+		font-weight: 300;
+		margin-bottom: 1rem;
+		letter-spacing: -0.03em;
+	}
+
+	.page-subtitle {
+		font-size: clamp(1.125rem, 2vw, 1.5rem);
+		color: var(--text-gray);
+		max-width: 600px;
+	}
+
+	/* Posts */
+	.posts-list {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		max-width: 800px;
+	}
+
+	.post-card {
+		display: block;
+		padding: 2rem 0;
+		border-bottom: 1px solid var(--border-gray);
+		transition: all 0.3s ease;
+		text-decoration: none;
+	}
+
+	.post-card:last-child {
+		border-bottom: none;
+	}
+
+	.post-card:hover {
+		transform: translateX(8px);
+	}
+
+	.post-meta {
+		font-size: 0.875rem;
+		color: var(--text-gray);
+		margin-bottom: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.post-title {
+		font-size: 1.75rem;
+		font-weight: 400;
+		margin-bottom: 0.75rem;
+		color: var(--text-dark);
+		letter-spacing: -0.02em;
+	}
+
+	.post-description {
+		font-size: 1.0625rem;
+		color: var(--text-gray);
+		line-height: 1.6;
+		margin-bottom: 1rem;
+	}
+
+	.read-more {
+		font-size: 0.9375rem;
+		color: var(--accent-blue);
+		font-weight: 500;
+		transition: all 0.3s ease;
+	}
+
+	.post-card:hover .read-more {
+		transform: translateX(4px);
+		display: inline-block;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero-section {
+			padding: 4rem 0 2rem;
+		}
+
+		.post-card {
+			padding: 1.5rem 0;
+		}
+
+		.post-title {
+			font-size: 1.5rem;
+		}
+	}
+</style>

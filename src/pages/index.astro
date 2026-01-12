@@ -1,0 +1,411 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+---
+
+<Layout
+	title="Denis Mironov - Data Engineer"
+	description="Turning data into insights. Data Engineer specializing in cloud data platforms, analytics pipelines, and data-driven solutions."
+>
+	<!-- Section 1: Light Hero -->
+	<section class="panel panel-1" data-theme="light">
+		<div class="container-custom">
+			<div class="hero-content">
+				<h1 class="mega-title">Turning Data<br/>into Insights</h1>
+				<p class="hero-subtitle">Data Engineer • Pipeline Architect • Analytics Enabler</p>
+				<div class="scroll-indicator">
+					<span>Scroll to explore</span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+						<path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 2: Dark About -->
+	<section class="panel panel-2" data-theme="dark">
+		<div class="container-custom">
+			<div class="about-content">
+				<div class="about-label">About</div>
+				<h2 class="section-title">Building Data Infrastructure<br/>That Scales</h2>
+				<div class="about-grid">
+					<div class="about-text">
+						<p>
+							I'm Denis, a data engineer with 5+ years of experience building cloud-native
+							data platforms, ETL/ELT pipelines, and analytics solutions.
+						</p>
+						<p>
+							Specializing in Google Cloud Platform, Python, and modern data stack technologies,
+							I help organizations unlock the value of their data through scalable infrastructure
+							and data-driven insights.
+						</p>
+					</div>
+					<div class="about-stats">
+						<div class="stat-item">
+							<div class="stat-number">5+</div>
+							<div class="stat-label">Years Experience</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">50+</div>
+							<div class="stat-label">Data Pipelines</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">10+</div>
+							<div class="stat-label">GCP Projects</div>
+						</div>
+					</div>
+				</div>
+				<div class="cta-buttons">
+					<a href="/expertise" class="btn-light">View Expertise</a>
+					<a href="/blog" class="btn-outline-light">Read Blog</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 3: Light Skills -->
+	<section class="normal-section skills-section" data-theme="light">
+		<div class="container-custom">
+			<h2 class="section-title-light">What I Do</h2>
+			<div class="skills-grid">
+				<div class="skill-card">
+					<div class="skill-number">01</div>
+					<h3>Data Engineering</h3>
+					<p>Building robust ETL/ELT pipelines and data warehouses using modern architectures.</p>
+					<a href="/expertise" class="skill-link">Learn more →</a>
+				</div>
+				<div class="skill-card">
+					<div class="skill-number">02</div>
+					<h3>Cloud Platforms</h3>
+					<p>Architecting scalable data solutions on Google Cloud Platform with BigQuery & Dataflow.</p>
+					<a href="/expertise" class="skill-link">Learn more →</a>
+				</div>
+				<div class="skill-card">
+					<div class="skill-number">03</div>
+					<h3>Analytics & Insights</h3>
+					<p>Creating analytics infrastructure that delivers actionable insights to stakeholders.</p>
+					<a href="/expertise" class="skill-link">Learn more →</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Section 4: Contact -->
+	<section class="normal-section contact-section" data-theme="light">
+		<div class="container-custom text-center">
+			<h2 class="contact-title">Let's Connect</h2>
+			<p class="contact-subtitle">Interested in collaboration or have a question?</p>
+			<div class="contact-links">
+				<a href="https://t.me/wudmc" target="_blank" rel="noopener" class="contact-item">
+					<span>Telegram</span>
+					<span class="arrow">→</span>
+				</a>
+				<a href="https://github.com/WuDMC" target="_blank" rel="noopener" class="contact-item">
+					<span>GitHub</span>
+					<span class="arrow">→</span>
+				</a>
+				<a href="https://www.linkedin.com/in/wudmc/" target="_blank" rel="noopener" class="contact-item">
+					<span>LinkedIn</span>
+					<span class="arrow">→</span>
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+
+<style>
+	/* Sections */
+	.panel {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 4rem 0;
+	}
+
+	.panel-1 {
+		background-color: var(--bg-light);
+		color: var(--text-dark);
+	}
+
+	.panel-2 {
+		background-color: #0a0a0a;
+		color: white;
+	}
+
+	.normal-section {
+		padding: 4rem 0;
+		background-color: var(--bg-light);
+	}
+
+	/* Hero content */
+	.hero-content {
+		max-width: 900px;
+	}
+
+	.mega-title {
+		font-size: clamp(3rem, 12vw, 7rem);
+		font-weight: 300;
+		line-height: 0.95;
+		margin-bottom: 2rem;
+		letter-spacing: -0.04em;
+	}
+
+	.hero-subtitle {
+		font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+		color: var(--text-gray);
+		margin-bottom: 4rem;
+		font-weight: 400;
+	}
+
+	.scroll-indicator {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+		color: var(--text-gray);
+		font-size: 0.875rem;
+		animation: bounce 2s infinite;
+	}
+
+	@keyframes bounce {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(10px); }
+	}
+
+	/* About section */
+	.about-content {
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	.about-label {
+		font-size: 0.875rem;
+		color: rgba(255, 255, 255, 0.5);
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		margin-bottom: 2rem;
+	}
+
+	.section-title {
+		font-size: clamp(2.5rem, 6vw, 4rem);
+		font-weight: 300;
+		line-height: 1.2;
+		margin-bottom: 3rem;
+		letter-spacing: -0.02em;
+	}
+
+	.about-grid {
+		display: grid;
+		grid-template-columns: 1.5fr 1fr;
+		gap: 4rem;
+		margin-bottom: 3rem;
+	}
+
+	.about-text p {
+		font-size: 1.125rem;
+		line-height: 1.8;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 1.5rem;
+	}
+
+	.about-stats {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.stat-item {
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+		padding-top: 1rem;
+	}
+
+	.stat-number {
+		font-size: 2.5rem;
+		font-weight: 300;
+		margin-bottom: 0.5rem;
+	}
+
+	.stat-label {
+		font-size: 0.875rem;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.cta-buttons {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.btn-light {
+		padding: 1rem 2rem;
+		background-color: white;
+		color: #0a0a0a;
+		border-radius: 2rem;
+		font-weight: 400;
+		transition: all 0.3s ease;
+		display: inline-block;
+	}
+
+	.btn-light:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+	}
+
+	.btn-outline-light {
+		padding: 1rem 2rem;
+		border: 1px solid rgba(255, 255, 255, 0.3);
+		color: white;
+		border-radius: 2rem;
+		font-weight: 400;
+		transition: all 0.3s ease;
+		display: inline-block;
+	}
+
+	.btn-outline-light:hover {
+		background-color: white;
+		color: #0a0a0a;
+		border-color: white;
+	}
+
+	/* Skills section */
+	.skills-section {
+		background-color: var(--bg-light);
+		padding: 6rem 0;
+	}
+
+	.section-title-light {
+		font-size: clamp(2.5rem, 5vw, 3.5rem);
+		font-weight: 300;
+		text-align: center;
+		margin-bottom: 4rem;
+		color: var(--text-dark);
+	}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+
+	.skill-card {
+		padding: 2.5rem;
+		border: 1px solid var(--border-gray);
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		background-color: white;
+	}
+
+	.skill-card:hover {
+		border-color: var(--text-dark);
+		transform: translateY(-4px);
+	}
+
+	.skill-number {
+		font-size: 0.875rem;
+		color: var(--text-gray);
+		margin-bottom: 1.5rem;
+	}
+
+	.skill-card h3 {
+		font-size: 1.5rem;
+		font-weight: 500;
+		margin-bottom: 1rem;
+		color: var(--text-dark);
+	}
+
+	.skill-card p {
+		color: var(--text-gray);
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+
+	.skill-link {
+		color: var(--accent-blue);
+		font-weight: 500;
+		transition: all 0.3s ease;
+	}
+
+	.skill-link:hover {
+		transform: translateX(4px);
+		display: inline-block;
+	}
+
+	/* Contact section */
+	.contact-section {
+		padding: 6rem 0;
+		background-color: var(--bg-gray);
+	}
+
+	.contact-title {
+		font-size: 2.5rem;
+		font-weight: 300;
+		margin-bottom: 1rem;
+		color: var(--text-dark);
+	}
+
+	.contact-subtitle {
+		font-size: 1.125rem;
+		color: var(--text-gray);
+		margin-bottom: 3rem;
+	}
+
+	.contact-links {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		max-width: 400px;
+		margin: 0 auto;
+	}
+
+	.contact-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.25rem 1.5rem;
+		border: 1px solid var(--border-gray);
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		color: var(--text-dark);
+		background-color: white;
+	}
+
+	.contact-item:hover {
+		background-color: var(--text-dark);
+		color: white;
+		border-color: var(--text-dark);
+	}
+
+	.contact-item .arrow {
+		transition: transform 0.3s ease;
+	}
+
+	.contact-item:hover .arrow {
+		transform: translateX(4px);
+	}
+
+	/* Responsive */
+	@media (max-width: 1024px) {
+		.about-grid {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.skills-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.skill-card {
+			padding: 2rem;
+		}
+
+		.contact-links {
+			max-width: 100%;
+		}
+	}
+</style>

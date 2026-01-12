@@ -1,0 +1,133 @@
+---
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header class="header">
+	<nav class="nav-container">
+		<div class="logo">
+			<a href="/">Denis Mironov</a>
+		</div>
+		<div class="nav-links">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/expertise">Expertise</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<a href="https://t.me/wudmc" target="_blank" rel="noopener" class="contact-link">Contact</a>
+		</div>
+	</nav>
+</header>
+
+<style>
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid var(--border-gray);
+	}
+
+	.nav-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 1.5rem 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.logo a {
+		font-size: 1.125rem;
+		font-weight: 400;
+		color: var(--text-dark);
+		text-decoration: none;
+		letter-spacing: -0.01em;
+		transition: color 0.3s ease;
+	}
+
+	.logo a:hover {
+		color: var(--accent-blue);
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	.nav-links a {
+		font-size: 0.9375rem;
+		font-weight: 400;
+		color: var(--text-gray);
+		text-decoration: none;
+		transition: color 0.3s ease;
+		position: relative;
+	}
+
+	.nav-links a:hover,
+	.nav-links a.active {
+		color: var(--text-dark);
+	}
+
+	.nav-links a::after {
+		content: '';
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background-color: var(--text-dark);
+		transition: width 0.3s ease;
+	}
+
+	.nav-links a:hover::after,
+	.nav-links a.active::after {
+		width: 100%;
+	}
+
+	.contact-link {
+		padding: 0.5rem 1.25rem;
+		border: 1px solid var(--border-gray);
+		border-radius: 2rem;
+		color: var(--text-dark) !important;
+		transition: all 0.3s ease;
+	}
+
+	.contact-link::after {
+		display: none;
+	}
+
+	.contact-link:hover {
+		background-color: var(--text-dark);
+		color: white !important;
+		border-color: var(--text-dark);
+	}
+
+	@media (max-width: 768px) {
+		.nav-container {
+			padding: 1rem 1.5rem;
+		}
+
+		.nav-links {
+			gap: 1.5rem;
+		}
+
+		.nav-links a {
+			font-size: 0.875rem;
+		}
+
+		.contact-link {
+			padding: 0.4rem 1rem;
+			font-size: 0.875rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.nav-links {
+			gap: 1rem;
+		}
+
+		.contact-link {
+			display: none;
+		}
+	}
+</style>

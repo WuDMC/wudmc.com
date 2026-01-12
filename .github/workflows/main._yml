@@ -1,0 +1,43 @@
+name: Deploy Astro to GCP VM
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to VM
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.GCP_HOST }}
+        username: ${{ secrets.GCP_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          echo "📥 Pulling latest changes..."
+          cd /home/wudmc.com
+
+          PULL_RESULT=$(git pull origin master 2>&1)
+          echo "$PULL_RESULT"
+
+          if echo "$PULL_RESULT" | grep -qE "Already up to date.|Fast-forward"; then
+            echo "✅ Git pull successful."
+          else
+            echo "❌ Git pull failed."
+            exit 1
+          fi
+
+          echo "📦 Installing dependencies..."
+          npm install
+
+          echo "🔨 Building Astro project..."
+          npm run build
+
+          echo "🔄 Restarting PM2 process..."
+          pm2 restart wudmc-astro || pm2 start dist/server/entry.mjs --name wudmc-astro
+
+          echo "✅ Deployment complete!"
+          pm2 status

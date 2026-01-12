@@ -1,219 +1,116 @@
-# WUDMC.COM
-## My personal site on Django + PostgreSQL, hosted on GCP VM with Nginx and Gunicorn
+# WUDMC.COM - Personal Website
 
+Personal website of Denis Mironov - Software & Data Engineer, built with **Astro 5.0 + SSR + React + Tailwind CSS**.
 
-## How to install on VM
-### Step 0 - Create VM instance in GCP
-and don`t forget to allow http/https and 8000 port
+## 🚀 Tech Stack
 
-add ssh key form local machine to VM  
-add ssh key from VM to github
+- **Astro 5.0** - Modern web framework with SSR support
+- **Node.js adapter** - Server-side rendering
+- **React 19** - For interactive components (dashboard)
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **TypeScript** - Type safety
+- **Google BigQuery** - Data infrastructure (planned)
 
+## 📁 Project Structure
 
-### step 1 - clone repo and set eviromennts
-open terminal and run
-```
-sudo apt update
-sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx curl
-sudo -H pip3 install --upgrade pip
-sudo -H pip3 install virtualenv
-cd /home
-mkdir wudmc.com
-cd wudmc.com
-git init
-git remote add origin git@github.com:WuDMC/wudmc.com.git
-git fetch
-git checkout -t origin/master
-git submodule update --init --recursive
-virtualenv venv
-
-```
-must be 12 version of postgres, to check use
-```
-pg_config --version
-```
-enter in db console 
-```commandline
- sudo -u postgres psql
- ```
-config db
-```
- CREATE DATABASE wudmc;
- CREATE USER wudmc WITH PASSWORD '***';
- ALTER ROLE wudmc SET client_encoding TO 'utf8';
- ALTER ROLE wudmc SET default_transaction_isolation TO 'read committed';
- ALTER ROLE wudmc SET timezone TO 'UTC';
- GRANT ALL PRIVILEGES ON DATABASE wudmc TO wudmc;
- \q
+```text
+├── public/               # Static assets (images, fonts)
+├── src/
+│   ├── components/      # Reusable Astro/React components
+│   ├── content/         # Blog posts (Markdown/MDX)
+│   ├── layouts/         # Page layouts
+│   ├── pages/           # File-based routing
+│   │   ├── api/        # API endpoints (SSR)
+│   │   ├── blog/       # Blog pages
+│   │   ├── index.astro # Home page
+│   │   ├── skills.astro
+│   │   └── lifestyle.astro
+│   └── styles/          # Global CSS
+├── django-backup/       # Previous Django version (backup)
+└── DEPLOYMENT.md        # Deployment instructions
 ```
 
-enter venv from wudmc.com folder
-```
-source venv/bin/activate
-pip install -r requirements.txt
-pip install requests
-sudo ufw allow 8000
-nano config.txt 
-```
-example of config 
-```
-[DATABASE]
-PASSWORD = pass
-NAME = name of db
-USER = login
-[HOSTS]
-localhost=1
-127.0.0.1=1
-domain.com=1
-```
-run and check django in venv. 
+## 🧞 Commands
 
-project must become available on ip_adress:8000  
+| Command                | Action                                     |
+| :--------------------- | :----------------------------------------- |
+| `npm install`          | Install dependencies                       |
+| `npm run dev`          | Start dev server at `localhost:4321`       |
+| `npm run build`        | Build production site to `./dist/`         |
+| `npm run preview`      | Preview production build locally           |
+| `npm run astro ...`    | Run Astro CLI commands                     |
 
-```commandline
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser
-python3 manage.py runserver 0.0.0.0:8000
-```
+## 🌐 Pages
 
-Second test project become available at http://wudmc.com:8000/ (but without static)
-```commandline
-gunicorn --bind 0.0.0.0:8000 wudmc_site.wsgi
+- **/** - Home page (About me)
+- **/skills** - Professional skills and tech stack
+- **/lifestyle** - Hobbies and life interests
+- **/blog** - Blog with articles (Markdown)
+- **/api/bigquery** - API endpoint for BigQuery (placeholder)
+
+## 📝 Blog
+
+Blog posts are written in Markdown/MDX format in `src/content/blog/`. Each post has frontmatter metadata:
+
+```md
+---
+title: "Post Title"
+description: "Post description"
+pubDate: 2026-01-12
+tags: ["tag1", "tag2"]
+---
+
+Post content here...
 ```
 
-### Step 2 - Set gunicorn service
-configure socket
-```commandline
-sudo nano /etc/systemd/system/gunicorn.socket
-```
-with content
-```commandline
-[Unit]
-Description=gunicorn socket
+## 🔮 Future Features
 
-[Socket]
-ListenStream=/run/gunicorn.sock
+- **Interactive Dashboard** with React components
+- **BigQuery integration** for data visualization
+- **Real-time analytics** from GCP
 
-[Install]
-WantedBy=sockets.target
+## 🚀 Deployment
 
-```
-then configure service
-```
-sudo nano /etc/systemd/system/gunicorn.service
-```
-with content
-```
-[Unit]
-Description=gunicorn daemon
-Requires=gunicorn.socket
-After=network.target
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions on GCP VM with Nginx.
 
-[Service]
-User=den  
-Group=www-data
-WorkingDirectory=/home/den/wudmc.com
-ExecStart=/home/den/wudmc.com/venv/bin/gunicorn \
-          --access-logfile - \
-          --workers 3 \
-          --bind unix:/run/gunicorn.sock \
-          wudmc_site.wsgi:application
+**Quick deploy:**
+1. Build: `npm run build`
+2. Start with PM2: `pm2 start dist/server/entry.mjs --name wudmc-astro`
+3. Configure Nginx to proxy to `localhost:4321`
 
-[Install]
-WantedBy=multi-user.target
+## 🌍 Environment Variables
+
+Copy `.env.example` to `.env` and configure:
+
+```bash
+# Google Cloud Platform (for future BigQuery integration)
+GCP_PROJECT_ID=your-project-id
+GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials.json
 ```
 
-and check 
-```commandline
-sudo systemctl start gunicorn.socket
-sudo systemctl enable gunicorn.socket
-sudo systemctl status gunicorn.socket
-sudo systemctl daemon-reload
-sudo systemctl restart gunicorn
-```
-if all is ok this command will return html content
-```commandline
-curl --unix-socket /run/gunicorn.sock localhost
-```
-### Step 3 - NGINX
-Create Nginx config
-```
-sudo nano /etc/nginx/sites-available/wudmc_site
-```
-wirh context
-```
-server {
-    listen 80;
-    server_name wudmc.com;
+## 📚 Migration Notes
 
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location /static/ {
-        root /home/den/wudmc.com;
-    }
+This project was migrated from Django 4.0 to Astro 5.0. The previous Django version is backed up in `django-backup/` directory.
 
-    location / {
-        include proxy_params;
-        proxy_pass http://unix:/run/gunicorn.sock;
-    }
-}
-```
+**Removed:**
+- Geonames microservice
+- Roulette microservice
+- PostgreSQL database (content moved to Markdown)
 
-and do link
-```commandline
-sudo ln -s /etc/nginx/sites-available/wudmc_site /etc/nginx/sites-enabled
-```
-### step 4 - SSL
+**Added:**
+- SSR with Node.js
+- React support for future dashboard
+- BigQuery infrastructure (placeholder)
+- Modern Tailwind CSS styling
 
-```commandline
-sudo apt-get install certbot
-sudo apt install python3-certbot-nginx
-sudo certbot --nginx -d wudmc.com
-sudo systemctl status certbot.timer
-sudo systemctl restart nginx
-sudo ufw delete allow 8000
-sudo ufw allow 'Nginx Full'
+## 👤 Author
 
-```
+**Denis Mironov**
+- Website: [wudmc.com](https://wudmc.com)
+- Telegram: [@wudmc](https://t.me/wudmc)
+- GitHub: [@WuDMC](https://github.com/WuDMC)
+- LinkedIn: [wudmc](https://www.linkedin.com/in/wudmc/)
 
-### step 5 - Final test
+## 📄 License
 
-```commandline
-sudo systemctl status gunicorn.socket
-sudo nginx -t
-sudo journalctl -u gunicorn.socket
-sudo tail -F /var/log/nginx/error.log
-
-```
-for restart services use
-```commandline
-sudo systemctl daemon-reload
-sudo systemctl restart gunicorn
-sudo systemctl restart nginx
-```
-
-## Install project on local machine 
-All steps are same as on VM, just do
-1. clone repo
-2. install 12 postgrese and configure
-```commandline
- sudo apt-get upgrade;
- sudo apt -y install postgresql-12 postgresql-client-12
- sudo -u postgres psql
-```
-HINTS TO MANAGE POSGRES SQL
-```commandline
- sudo -u postgres psql
- systemctl stop postgresql
- systemctl start postgresql
- systemctl status postgresql
- # disable service(not auto-start any more)
- systemctl disable postgresql
- systemctl enable postgresql
-```
-
-3. python3 manage.py  : do migrations and create superuser
-
-4. create config.txt in project folder
-
-5. Develop
+Personal project - All rights reserved

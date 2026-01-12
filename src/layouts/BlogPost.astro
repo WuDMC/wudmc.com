@@ -1,0 +1,211 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Layout from './Layout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+	<article class="blog-post">
+		<div class="container-custom">
+			<!-- Header -->
+			<header class="post-header">
+				<div class="post-meta">
+					<FormattedDate date={pubDate} />
+					{updatedDate && (
+						<span class="updated">
+							· Updated <FormattedDate date={updatedDate} />
+						</span>
+					)}
+				</div>
+				<h1 class="post-title">{title}</h1>
+				{description && <p class="post-description">{description}</p>}
+			</header>
+
+			<!-- Content -->
+			<div class="post-content prose">
+				<slot />
+			</div>
+
+			<!-- Back link -->
+			<div class="post-footer">
+				<a href="/blog" class="back-link">← Back to all posts</a>
+			</div>
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.blog-post {
+		padding: 8rem 0 4rem;
+	}
+
+	/* Header */
+	.post-header {
+		max-width: 720px;
+		margin: 0 auto 4rem;
+		padding-bottom: 3rem;
+		border-bottom: 1px solid var(--border-gray);
+	}
+
+	.post-meta {
+		font-size: 0.875rem;
+		color: var(--text-gray);
+		margin-bottom: 1.5rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.post-meta .updated {
+		opacity: 0.7;
+		font-style: italic;
+		text-transform: none;
+	}
+
+	.post-title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 300;
+		line-height: 1.2;
+		margin-bottom: 1rem;
+		letter-spacing: -0.02em;
+	}
+
+	.post-description {
+		font-size: 1.125rem;
+		color: var(--text-gray);
+		line-height: 1.6;
+		margin-top: 1.5rem;
+	}
+
+	/* Content */
+	.post-content {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	/* Prose styles */
+	.prose {
+		color: var(--text-dark);
+		font-size: 1.0625rem;
+		line-height: 1.8;
+	}
+
+	.prose :global(h2) {
+		font-size: 1.75rem;
+		font-weight: 400;
+		margin-top: 3rem;
+		margin-bottom: 1rem;
+		letter-spacing: -0.01em;
+	}
+
+	.prose :global(h3) {
+		font-size: 1.375rem;
+		font-weight: 400;
+		margin-top: 2rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.prose :global(p) {
+		margin-bottom: 1.5rem;
+	}
+
+	.prose :global(a) {
+		color: var(--accent-blue);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.3s ease;
+	}
+
+	.prose :global(a:hover) {
+		border-bottom-color: var(--accent-blue);
+	}
+
+	.prose :global(code) {
+		background-color: var(--bg-gray);
+		padding: 0.2em 0.4em;
+		border-radius: 3px;
+		font-size: 0.9em;
+		font-family: 'Roboto Mono', monospace;
+	}
+
+	.prose :global(pre) {
+		background-color: var(--bg-gray);
+		padding: 1.5rem;
+		border-radius: 0.5rem;
+		overflow-x: auto;
+		margin: 2rem 0;
+	}
+
+	.prose :global(pre code) {
+		background-color: transparent;
+		padding: 0;
+	}
+
+	.prose :global(ul),
+	.prose :global(ol) {
+		margin-bottom: 1.5rem;
+		padding-left: 1.5rem;
+	}
+
+	.prose :global(li) {
+		margin-bottom: 0.5rem;
+	}
+
+	.prose :global(blockquote) {
+		border-left: 3px solid var(--border-gray);
+		padding-left: 1.5rem;
+		margin: 2rem 0;
+		font-style: italic;
+		color: var(--text-gray);
+	}
+
+	.prose :global(img) {
+		max-width: 100%;
+		border-radius: 0.5rem;
+		margin: 2rem 0;
+	}
+
+	/* Footer */
+	.post-footer {
+		max-width: 720px;
+		margin: 4rem auto 0;
+		padding-top: 3rem;
+		border-top: 1px solid var(--border-gray);
+	}
+
+	.back-link {
+		color: var(--text-gray);
+		text-decoration: none;
+		font-size: 0.9375rem;
+		transition: all 0.3s ease;
+		display: inline-block;
+	}
+
+	.back-link:hover {
+		color: var(--text-dark);
+		transform: translateX(-4px);
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.blog-post {
+			padding: 4rem 0 2rem;
+		}
+
+		.post-header {
+			margin-bottom: 3rem;
+			padding-bottom: 2rem;
+		}
+
+		.post-title {
+			font-size: 2rem;
+		}
+
+		.prose {
+			font-size: 1rem;
+		}
+	}
+</style>

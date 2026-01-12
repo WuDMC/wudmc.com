@@ -1,0 +1,312 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+---
+
+<Layout
+	title="Expertise - Denis Mironov"
+	description="Data engineering expertise - building scalable data platforms, pipelines, and analytics solutions."
+>
+	<!-- Hero -->
+	<section class="hero-section">
+		<div class="container-custom">
+			<h1 class="page-title fade-in">What I Do</h1>
+			<p class="page-subtitle fade-in">Specialized in building data infrastructure that scales</p>
+		</div>
+	</section>
+
+	<!-- Expertise Cards -->
+	<section class="expertise-section section">
+		<div class="container-custom">
+			<div class="expertise-grid">
+				<!-- Data Engineering -->
+				<div class="expertise-card">
+					<div class="card-number">01</div>
+					<h2>Data Engineering</h2>
+					<p class="card-description">
+						Designing and implementing robust ETL/ELT pipelines that transform raw data into
+						structured, analysis-ready formats. Building data warehouses using modern architectures
+						and best practices.
+					</p>
+					<div class="card-skills">
+						<span class="skill-tag">Python</span>
+						<span class="skill-tag">SQL</span>
+						<span class="skill-tag">Airflow</span>
+						<span class="skill-tag">dbt</span>
+						<span class="skill-tag">Data Modeling</span>
+					</div>
+				</div>
+
+				<!-- Cloud Architecture -->
+				<div class="expertise-card">
+					<div class="card-number">02</div>
+					<h2>Cloud Data Platforms</h2>
+					<p class="card-description">
+						Architecting and deploying cloud-native data solutions on Google Cloud Platform.
+						Leveraging BigQuery, Dataflow, Pub/Sub, and other GCP services to build scalable,
+						cost-effective data infrastructure.
+					</p>
+					<div class="card-skills">
+						<span class="skill-tag">Google Cloud</span>
+						<span class="skill-tag">BigQuery</span>
+						<span class="skill-tag">Dataflow</span>
+						<span class="skill-tag">Pub/Sub</span>
+						<span class="skill-tag">Cloud Storage</span>
+					</div>
+				</div>
+
+				<!-- Analytics & Insights -->
+				<div class="expertise-card">
+					<div class="card-number">03</div>
+					<h2>Analytics & Insights</h2>
+					<p class="card-description">
+						Creating analytics infrastructure that enables data-driven decision making.
+						Building dashboards, reports, and data products that deliver actionable insights
+						to stakeholders.
+					</p>
+					<div class="card-skills">
+						<span class="skill-tag">Data Warehousing</span>
+						<span class="skill-tag">Analytics</span>
+						<span class="skill-tag">Visualization</span>
+						<span class="skill-tag">Metrics</span>
+						<span class="skill-tag">BI Tools</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Technical Stack -->
+	<section class="stack-section section">
+		<div class="container-custom">
+			<h2 class="section-title">Technical Stack</h2>
+
+			<div class="stack-grid">
+				<div class="stack-category">
+					<h3>Languages & Core</h3>
+					<ul>
+						<li>Python (Advanced)</li>
+						<li>SQL (BigQuery, PostgreSQL, MySQL)</li>
+						<li>Bash/Shell Scripting</li>
+					</ul>
+				</div>
+
+				<div class="stack-category">
+					<h3>Cloud & Infrastructure</h3>
+					<ul>
+						<li>Google Cloud Platform</li>
+						<li>Docker & Kubernetes</li>
+						<li>CI/CD (GitHub Actions, Cloud Build)</li>
+						<li>Infrastructure as Code</li>
+					</ul>
+				</div>
+
+				<div class="stack-category">
+					<h3>Data Tools</h3>
+					<ul>
+						<li>Apache Airflow, Prefect</li>
+						<li>dbt (Data Build Tool)</li>
+						<li>Apache Kafka, Pub/Sub</li>
+						<li>ClickHouse, PostgreSQL</li>
+					</ul>
+				</div>
+
+				<div class="stack-category">
+					<h3>Soft Skills</h3>
+					<ul>
+						<li>Team Leadership</li>
+						<li>Technical Documentation</li>
+						<li>Cross-functional Collaboration</li>
+						<li>Agile/Scrum</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="cta-section section">
+		<div class="container-custom text-center">
+			<h2 class="cta-title">Interested in Working Together?</h2>
+			<p class="cta-description">Let's discuss how I can help with your data infrastructure needs.</p>
+			<a href="https://t.me/wudmc" target="_blank" rel="noopener" class="btn-primary">Get in Touch</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.hero-section {
+		padding: 8rem 0 4rem;
+		border-bottom: 1px solid var(--border-gray);
+	}
+
+	.page-title {
+		font-size: clamp(3rem, 8vw, 5rem);
+		font-weight: 300;
+		margin-bottom: 1rem;
+		letter-spacing: -0.03em;
+	}
+
+	.page-subtitle {
+		font-size: clamp(1.125rem, 2vw, 1.5rem);
+		color: var(--text-gray);
+		max-width: 600px;
+	}
+
+	/* Expertise Cards */
+	.expertise-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+	}
+
+	.expertise-card {
+		padding: 3rem;
+		border: 1px solid var(--border-gray);
+		border-radius: 0.5rem;
+		transition: all 0.3s ease;
+		position: relative;
+	}
+
+	.expertise-card:hover {
+		border-color: var(--text-dark);
+		transform: translateY(-4px);
+	}
+
+	.card-number {
+		font-size: 0.875rem;
+		color: var(--text-gray);
+		margin-bottom: 1.5rem;
+		font-weight: 500;
+	}
+
+	.expertise-card h2 {
+		font-size: 2rem;
+		font-weight: 400;
+		margin-bottom: 1.5rem;
+	}
+
+	.card-description {
+		font-size: 1.0625rem;
+		color: var(--text-gray);
+		line-height: 1.7;
+		margin-bottom: 2rem;
+	}
+
+	.card-skills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.skill-tag {
+		padding: 0.5rem 1rem;
+		background-color: var(--bg-gray);
+		border-radius: 2rem;
+		font-size: 0.875rem;
+		color: var(--text-dark);
+	}
+
+	/* Technical Stack */
+	.section-title {
+		font-size: 2.5rem;
+		font-weight: 300;
+		margin-bottom: 3rem;
+		text-align: center;
+	}
+
+	.stack-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2.5rem;
+	}
+
+	.stack-category h3 {
+		font-size: 1.125rem;
+		font-weight: 500;
+		margin-bottom: 1.25rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid var(--border-gray);
+	}
+
+	.stack-category ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.stack-category li {
+		padding: 0.5rem 0;
+		color: var(--text-gray);
+		font-size: 0.9375rem;
+	}
+
+	.stack-category li::before {
+		content: '→';
+		margin-right: 0.75rem;
+		color: var(--accent-blue);
+	}
+
+	/* CTA Section */
+	.cta-section {
+		background-color: var(--bg-gray);
+		border-radius: 1rem;
+		padding: 4rem 2rem;
+	}
+
+	.cta-title {
+		font-size: 2.5rem;
+		font-weight: 300;
+		margin-bottom: 1rem;
+	}
+
+	.cta-description {
+		font-size: 1.125rem;
+		color: var(--text-gray);
+		margin-bottom: 2rem;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.btn-primary {
+		padding: 0.875rem 2rem;
+		background-color: var(--text-dark);
+		color: white;
+		border-radius: 2rem;
+		font-weight: 400;
+		transition: all 0.3s ease;
+		display: inline-block;
+	}
+
+	.btn-primary:hover {
+		background-color: var(--accent-blue);
+		transform: translateY(-2px);
+		color: white;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.hero-section {
+			padding: 4rem 0 2rem;
+		}
+
+		.expertise-card {
+			padding: 2rem;
+		}
+
+		.expertise-card h2 {
+			font-size: 1.5rem;
+		}
+
+		.stack-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.cta-section {
+			padding: 3rem 1.5rem;
+		}
+	}
+</style>

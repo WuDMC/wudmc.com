@@ -1,0 +1,91 @@
+---
+const today = new Date();
+---
+
+<footer class="footer">
+	<div class="footer-container">
+		<div class="footer-content">
+			<p class="copyright">© {today.getFullYear()} Denis Mironov. Data Engineer.</p>
+			<div class="footer-links">
+				<a href="https://t.me/wudmc" target="_blank" rel="noopener">Telegram</a>
+				<a href="https://github.com/WuDMC" target="_blank" rel="noopener">GitHub</a>
+				<a href="https://www.linkedin.com/in/wudmc/" target="_blank" rel="noopener">LinkedIn</a>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		margin-top: 6rem;
+		border-top: 1px solid var(--border-gray);
+		background-color: var(--bg-light);
+	}
+
+	.footer-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 3rem 2rem;
+	}
+
+	.footer-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+	}
+
+	.copyright {
+		color: var(--text-gray);
+		font-size: 0.875rem;
+		margin: 0;
+	}
+
+	.footer-links {
+		display: flex;
+		gap: 2rem;
+	}
+
+	.footer-links a {
+		color: var(--text-gray);
+		text-decoration: none;
+		font-size: 0.875rem;
+		transition: color 0.3s ease;
+		position: relative;
+	}
+
+	.footer-links a::after {
+		content: '';
+		position: absolute;
+		bottom: -2px;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background-color: var(--text-dark);
+		transition: width 0.3s ease;
+	}
+
+	.footer-links a:hover {
+		color: var(--text-dark);
+	}
+
+	.footer-links a:hover::after {
+		width: 100%;
+	}
+
+	@media (max-width: 768px) {
+		.footer-container {
+			padding: 2rem 1.5rem;
+		}
+
+		.footer-content {
+			flex-direction: column;
+			text-align: center;
+		}
+
+		.footer-links {
+			justify-content: center;
+		}
+	}
+</style>
