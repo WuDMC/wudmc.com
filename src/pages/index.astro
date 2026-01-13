@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import WaveTerrainCustomizable from '../components/WaveTerrainCustomizable.tsx';
 
 export const prerender = true;
 ---
@@ -8,17 +9,20 @@ export const prerender = true;
 	title="Denis Mironov - Data Engineer"
 	description="Turning data into insights. Data Engineer specializing in cloud data platforms, analytics pipelines, and data-driven solutions."
 >
-	<!-- Section 1: Light Hero -->
-	<section class="panel panel-1" data-theme="light">
-		<div class="container-custom">
-			<div class="hero-content">
-				<h1 class="mega-title">Turning Data<br/>into Insights</h1>
-				<p class="hero-subtitle">Data Engineer • Cloud Architect • Analytics Expert</p>
-				<div class="scroll-indicator">
-					<span>Scroll to explore</span>
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-						<path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
+	<!-- Section 1: Interactive 3D Wave Animation -->
+	<section class="panel panel-1 wave-hero" data-theme="light">
+		<WaveTerrainCustomizable client:load />
+		<div class="hero-overlay">
+			<div class="container-custom">
+				<div class="hero-content">
+					<h1 class="mega-title">Turning Data<br/>into Insights</h1>
+					<p class="hero-subtitle">Data Engineer • Cloud Architect • Analytics Expert</p>
+					<div class="scroll-indicator">
+						<span>Scroll to explore</span>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -129,6 +133,30 @@ export const prerender = true;
 	.panel-1 {
 		background-color: var(--bg-light);
 		color: var(--text-dark);
+	}
+
+	.wave-hero {
+		padding: 0 !important;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 10;
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		padding-top: 10vh;
+		pointer-events: none;
+	}
+
+	.hero-overlay .hero-content {
+		pointer-events: auto;
 	}
 
 	.panel-2 {
